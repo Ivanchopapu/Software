@@ -1,5 +1,5 @@
 
-package proyecto_final_swindustrial;
+package com.idesi.proyecto;
 
 
 public class Auxiliar {
