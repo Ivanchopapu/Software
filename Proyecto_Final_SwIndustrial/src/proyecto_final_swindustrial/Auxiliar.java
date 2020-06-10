@@ -1,14 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package proyecto_final_swindustrial;
 
-/**
- *
- * @author Hola
- */
+
 public class Auxiliar {
+    
+    int x;
+    int y;
+    String A = "Chale";
+    
+    
+    
+    public void putear()
+    {
+        System.out.println(" Puto el que lo lea " + A);
+        
+    }
+    public void chalemasivo()
+    {
+        int x = 0;
+        
+        while(x<20)
+        {
+            System.out.println("Putos todos x " + x);
+        }
+    }
     
 }
