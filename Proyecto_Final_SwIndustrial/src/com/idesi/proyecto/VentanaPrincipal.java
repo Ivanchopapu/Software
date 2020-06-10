@@ -27,17 +27,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_Control = new javax.swing.JButton();
+        btn_Recursos = new javax.swing.JButton();
+        btn_Clientes = new javax.swing.JButton();
+        btn_Salir = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btn_Control.setText("Control de Personal");
+
+        btn_Recursos.setText("Recursos Materiales");
+
+        btn_Clientes.setText("Manejo de Clientes");
+
+        btn_Salir.setText("Salir del Sistema");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_Clientes)
+                    .addComponent(btn_Recursos))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_Salir)
+                    .addComponent(btn_Control))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Recursos)
+                    .addComponent(btn_Control))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Clientes)
+                    .addComponent(btn_Salir))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +110,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Clientes;
+    private javax.swing.JButton btn_Control;
+    private javax.swing.JButton btn_Recursos;
+    private javax.swing.JButton btn_Salir;
     // End of variables declaration//GEN-END:variables
 }
