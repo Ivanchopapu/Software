@@ -23,6 +23,7 @@ public class Auxiliar {
         {
             System.out.println("Putos todos x " + x);
         }
+        x++;
     }
     
 }
