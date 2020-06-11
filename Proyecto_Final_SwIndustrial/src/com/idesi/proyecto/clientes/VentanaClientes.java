@@ -10,7 +10,7 @@ package com.idesi.proyecto.clientes;
  * @author Cristofer
  */
 public class VentanaClientes extends javax.swing.JFrame {
-    private Clientes[] clientes;
+    private Cliente[] clientes;
     /**
      * Creates new form VentanaClientes
      */
