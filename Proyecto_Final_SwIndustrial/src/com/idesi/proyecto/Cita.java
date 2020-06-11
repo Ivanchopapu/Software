@@ -1,14 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.idesi.proyecto;
 
-/**
- *
- * @author Cristofer
- */
 public class Cita {
+    
+    int hora;
+    int minutos;
+    int dia;
+    int mes;
+    double codigo;
+    String tipoExamen;
+    
+    public void setDate(int horas, int minutos, int dia, int mes){
+        
+    }
+    
+
+    public void setCodigo(double codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setTipoExamen(String tipoExamen) {
+        this.tipoExamen = tipoExamen;
+    }
+
+    public double getCodigo() {
+        return codigo;
+    }
+
+    public String getTipoExamen() {
+        return tipoExamen;
+    }
     
 }
