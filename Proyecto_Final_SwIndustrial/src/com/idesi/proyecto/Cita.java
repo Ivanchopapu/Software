@@ -1,21 +1,26 @@
 
 package com.idesi.proyecto;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Cita {
     
-    Date date ;
+    Calendar calendario ;
     double codigo;
     String tipoExamen;
     
-    public void setDate(int horas, int minutos, int dia, int mes){
+    public void setcalendario(int hora, int minuto, int dia, int mes){
         
-        date = new Date(2020,mes,dia,horas,minutos,0);
+        calendario.set(Calendar.YEAR,2020);
+        calendario.set(Calendar.MONTH,mes);
+        calendario.set(Calendar.DATE,dia);
+        calendario.set(Calendar.HOUR,hora);
+        calendario.set(Calendar.MINUTE,minuto);
     }
         
-    public Date getDate() {
-        return date;
+    public Calendar getCalendario() {
+        return calendario;
     }
     
 
