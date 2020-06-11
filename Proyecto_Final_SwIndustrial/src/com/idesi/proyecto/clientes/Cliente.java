@@ -1,4 +1,6 @@
-package com.idesi.proyecto;
+package com.idesi.proyecto.clientes;
+
+import com.idesi.proyecto.Persona;
 
 public class Cliente extends Persona {
 

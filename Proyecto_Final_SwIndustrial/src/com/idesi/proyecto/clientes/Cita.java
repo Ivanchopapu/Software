@@ -1,5 +1,5 @@
 
-package com.idesi.proyecto;
+package com.idesi.proyecto.clientes;
 
 import java.util.Calendar;
 import java.util.Date;

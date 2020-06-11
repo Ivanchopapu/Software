@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.idesi.proyecto;
+package com.idesi.proyecto.clientes;
 
 /**
  *
@@ -36,7 +36,6 @@ public class VentanaClientes extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(527, 247));
         setResizable(false);
         setSize(new java.awt.Dimension(527, 247));
 

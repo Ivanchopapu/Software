@@ -1,5 +1,7 @@
 
-package com.idesi.proyecto;
+package com.idesi.proyecto.personal;
+
+import com.idesi.proyecto.Persona;
 
 public class Empleado extends Persona{
     private int codigoEmpleado;
