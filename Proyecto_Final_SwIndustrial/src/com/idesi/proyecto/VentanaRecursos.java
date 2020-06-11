@@ -27,17 +27,60 @@ public class VentanaRecursos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_Alta = new javax.swing.JButton();
+        btn_Producto = new javax.swing.JButton();
+        btn_Modificar = new javax.swing.JButton();
+        btn_Reporte = new javax.swing.JButton();
+        btn_Regresar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btn_Alta.setText("Dar de alta Productos");
+
+        btn_Producto.setText("Buscar un Producto");
+
+        btn_Modificar.setText("Modificar Precio de un producto");
+
+        btn_Reporte.setText("Reporte de Productos");
+
+        btn_Regresar.setText("Regresar a la ventana principal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(btn_Alta))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(btn_Modificar)))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_Producto)
+                    .addComponent(btn_Reporte))
+                .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_Regresar)
+                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Alta)
+                    .addComponent(btn_Producto))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Modificar)
+                    .addComponent(btn_Reporte))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(btn_Regresar)
+                .addGap(35, 35, 35))
         );
 
         pack();
@@ -79,5 +122,10 @@ public class VentanaRecursos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Alta;
+    private javax.swing.JButton btn_Modificar;
+    private javax.swing.JButton btn_Producto;
+    private javax.swing.JButton btn_Regresar;
+    private javax.swing.JButton btn_Reporte;
     // End of variables declaration//GEN-END:variables
 }
