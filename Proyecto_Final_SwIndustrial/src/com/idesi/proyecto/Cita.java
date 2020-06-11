@@ -1,17 +1,21 @@
 
 package com.idesi.proyecto;
 
+import java.util.Date;
+
 public class Cita {
     
-    int hora;
-    int minutos;
-    int dia;
-    int mes;
+    Date date ;
     double codigo;
     String tipoExamen;
     
     public void setDate(int horas, int minutos, int dia, int mes){
         
+        date = new Date(2020,mes,dia,horas,minutos,0);
+    }
+        
+    public Date getDate() {
+        return date;
     }
     
 
