@@ -2,17 +2,17 @@ package com.idesi.proyecto;
 
 public class Cliente extends Persona {
 
-    String Nombre;
-    String Domicilio;
+    
+    String domicilio;
     Double Código_de_cliente;
-    int Edad;
+    
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
     public void setDomicilio(String Domicilio) {
-        this.Domicilio = Domicilio;
+        this.domicilio = Domicilio;
     }
 
     public void setCódigo_de_cliente(Double Código_de_cliente) {
@@ -20,15 +20,15 @@ public class Cliente extends Persona {
     }
 
     public void setEdad(int Edad) {
-        this.Edad = Edad;
+        this.edad = Edad;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public String getDomicilio() {
-        return Domicilio;
+        return domicilio;
     }
 
     public Double getCódigo_de_cliente() {
@@ -36,7 +36,7 @@ public class Cliente extends Persona {
     }
 
     public int getEdad() {
-        return Edad;
+        return edad;
     }
 
 }
