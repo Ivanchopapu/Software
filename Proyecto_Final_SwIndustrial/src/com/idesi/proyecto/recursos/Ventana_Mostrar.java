@@ -1,11 +1,14 @@
 
 package com.idesi.proyecto.recursos;
 
+import javax.swing.JOptionPane;
+
 public class Ventana_Mostrar extends javax.swing.JFrame {
     
     //Interfaz entre ventanas
     VentanaRecursos Obj_VentanaRecursos = null;
     Producto[] Obj_Producto = null;
+    int posicion;
 
     public Ventana_Mostrar() {
         initComponents();
@@ -55,6 +58,11 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
         });
 
         btn_Aceptar.setText("Aceptar");
+        btn_Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AceptarActionPerformed(evt);
+            }
+        });
 
         txt_Codigo.setEditable(false);
 
@@ -152,6 +160,13 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btn_RegresarActionPerformed
 
+    private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AceptarActionPerformed
+       
+        int Precio = Integer.parseInt(txt_Precio.getText());
+        Obj_Producto[posicion].setPrecio(Precio);
+       JOptionPane.showMessageDialog(this, "El nuevo precio del producto se ha actualizado");
+    }//GEN-LAST:event_btn_AceptarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,19 +223,23 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
     }
 
     void Modo_Modificar(int Codigo, int posicion) {
+        this.posicion = posicion;
         btn_Aceptar.setVisible(true);
+         txt_Precio.setEditable(true);
         Mostrar_Datos(posicion);
     }
     public void Mostrar_Datos(int posicion){
-        
+        this.posicion = posicion;
         String Existencia = String.valueOf(Obj_Producto[posicion].getExistencia());
         String Codigo = String.valueOf(Obj_Producto[posicion].getCodigo());
-        String Producto() = String.valueOf(entero);
+        String Precio = String.valueOf(Obj_Producto[posicion].getPrecio());
         
         txt_Cantidad.setText(Existencia);
-        txt_Codigo.setText(Codigo));
+        txt_Codigo.setText(Codigo);
         txt_Nombre.setText(Obj_Producto[posicion].getNombreProducto());
-        txt_Precio.setText(t);
+        txt_Precio.setText(Precio);
         txt_Tipo.setText(Obj_Producto[posicion].getTipoProducto());
+       
+        
     }
 }
