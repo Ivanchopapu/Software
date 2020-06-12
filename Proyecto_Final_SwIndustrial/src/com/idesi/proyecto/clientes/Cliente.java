@@ -6,7 +6,7 @@ public class Cliente extends Persona {
 
     
     String domicilio;
-    Double Código_de_cliente;
+    String Código_de_cliente;
     
 
     public void setNombre(String Nombre) {
@@ -17,7 +17,7 @@ public class Cliente extends Persona {
         this.domicilio = Domicilio;
     }
 
-    public void setCódigo_de_cliente(Double Código_de_cliente) {
+    public void setCódigo_de_cliente(String Código_de_cliente) {
         this.Código_de_cliente = Código_de_cliente;
     }
 
@@ -33,7 +33,7 @@ public class Cliente extends Persona {
         return domicilio;
     }
 
-    public Double getCódigo_de_cliente() {
+    public String getCódigo_de_cliente() {
         return Código_de_cliente;
     }
 

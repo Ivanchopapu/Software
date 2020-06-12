@@ -10,12 +10,23 @@ package com.idesi.proyecto.clientes;
  * @author Cristofer
  */
 public class VentanaClientes extends javax.swing.JFrame {
-    private Cliente[] clientes;
+
+    private VentanaAgregar vtnAgregar = null;
+    private Cliente[] clientes = new Cliente[5];
+    private Cita[] citas = new Cita[5];
+    private int posClientes = 0;
+    private int posCitas = 0;
+
     /**
      * Creates new form VentanaClientes
      */
     public VentanaClientes() {
         initComponents();
+    }
+
+    public void aplicarCambios(int posClientes) {
+        this.posClientes = posClientes;
+        txtClientesRegistrados.setText(String.valueOf(this.posClientes));
     }
 
     /**
@@ -35,9 +46,7 @@ public class VentanaClientes extends javax.swing.JFrame {
         btnListaCitas = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         lblClientesRegistrados = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         txtClientesRegistrados = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -45,6 +54,11 @@ public class VentanaClientes extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(527, 247));
 
         btnAgregar.setText("Agregar un cliente");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar cliente");
 
@@ -58,13 +72,12 @@ public class VentanaClientes extends javax.swing.JFrame {
 
         btnRegresar.setText("Regresar");
 
+        lblClientesRegistrados.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblClientesRegistrados.setText("No. Clientes registrados: ");
 
-        jLabel1.setText("No. Citas registradas:");
-
+        txtClientesRegistrados.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtClientesRegistrados.setText("0");
         txtClientesRegistrados.setEnabled(false);
-
-        jTextField1.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,36 +92,28 @@ public class VentanaClientes extends javax.swing.JFrame {
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrearCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnListaCitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(96, 96, 96)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblClientesRegistrados)
-                            .addComponent(jLabel1))
+                        .addComponent(lblClientesRegistrados)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtClientesRegistrados, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                            .addComponent(jTextField1))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addComponent(txtClientesRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
-                    .addComponent(lblClientesRegistrados)
-                    .addComponent(txtClientesRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnAgregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnModificar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnModificar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblClientesRegistrados)
+                        .addComponent(txtClientesRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -122,6 +127,17 @@ public class VentanaClientes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if (vtnAgregar == null) {
+            vtnAgregar = new VentanaAgregar(this, clientes);
+        }
+
+        vtnAgregar.posClientes = this.posClientes;
+        vtnAgregar.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,8 +182,6 @@ public class VentanaClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnListaCitas;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblClientesRegistrados;
     private javax.swing.JTextField txtClientesRegistrados;
     // End of variables declaration//GEN-END:variables

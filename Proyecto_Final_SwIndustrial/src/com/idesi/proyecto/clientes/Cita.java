@@ -6,21 +6,24 @@ import java.util.Date;
 
 public class Cita {
     
-    Calendar calendario ;
+    Date fechaCita ;
     double codigo;
     String tipoExamen;
     
-    public void setcalendario(int hora, int minuto, int dia, int mes){
+    public void setFechaCita(int hora, int minuto, int dia, int mes){
         
-        calendario.set(Calendar.YEAR,2020);
-        calendario.set(Calendar.MONTH,mes);
-        calendario.set(Calendar.DATE,dia);
-        calendario.set(Calendar.HOUR,hora);
-        calendario.set(Calendar.MINUTE,minuto);
+        Calendar miCalendario = Calendar.getInstance();
+        miCalendario.set(Calendar.YEAR,2020);
+        miCalendario.set(Calendar.MONTH,mes);
+        miCalendario.set(Calendar.DATE,dia);
+        miCalendario.set(Calendar.HOUR,hora);
+        miCalendario.set(Calendar.MINUTE,minuto);
+        
+        this.fechaCita = miCalendario.getTime();
     }
         
-    public Calendar getCalendario() {
-        return calendario;
+    public Date getFechaCita() {
+        return this.fechaCita;
     }
     
 

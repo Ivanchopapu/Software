@@ -5,11 +5,17 @@
  */
 package com.idesi.proyecto.clientes;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Cristofer
  */
 public class VentanaAgregar extends javax.swing.JFrame {
+
+    private VentanaClientes vtnClientes;
+    private Cliente[] clientes;
+    protected int posClientes;
 
     /**
      * Creates new form VentanaAgregar
@@ -17,18 +23,70 @@ public class VentanaAgregar extends javax.swing.JFrame {
     public VentanaAgregar() {
         initComponents();
     }
-    
-    private boolean revisarEntradas(){
-        if(!(txtNombre.getText().equals("")) &&
-                !(txtCodigo.getText().equals("")) &&
-                !(txtEdad.getText().equals("")))
-            return true;
-        else
-            return false;
+
+    public VentanaAgregar(VentanaClientes vtnClientes, Cliente[] clientes) {
+        this.vtnClientes = vtnClientes;
+        this.clientes = clientes;
+        initComponents();
     }
-    
-    private void procesoGuardar(){
-        
+
+    private boolean revisarAlmacenamiento() {
+        if (posClientes == 5) {
+            mostrarAviso(3);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean revisarEntradas() {
+        if (!(txtNombre.getText().equals(""))
+                && !(txtCodigo.getText().equals(""))
+                && !(txtEdad.getText().equals(""))
+                && !(txtDomicilio.getText().equals(""))) {
+            if (txtEdad.getText().matches("[0-9]+")) {
+                return true;
+            } else {
+                mostrarAviso(2);
+                return false;
+            }
+        } else {
+            mostrarAviso(2);
+            return false;
+        }
+    }
+
+    private void procesoGuardar() {
+        clientes[posClientes] = new Cliente();
+        clientes[posClientes].setCódigo_de_cliente(txtCodigo.getText());
+        clientes[posClientes].setNombre(txtNombre.getText());
+        clientes[posClientes].setEdad(Integer.parseInt(txtEdad.getText()));
+        clientes[posClientes].setDomicilio(txtDomicilio.getText());
+        mostrarAviso(1);
+        posClientes++;
+    }
+
+    private void mostrarAviso(int aviso) {
+        switch (aviso) {
+            case 1:
+                JOptionPane.showMessageDialog(this,
+                        "Cliente registrado con exito.");
+            case 2:
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Favor de no dejar ningun campo en blanco, revise lo introducido.");
+                break;
+            case 3: 
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Favor de solo introducir números en el campo de edad.");
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Almacenamiento completo, no se pueden guardar más.");
+                break;
+        }
     }
 
     /**
@@ -50,6 +108,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         lblRegistro = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,38 +130,45 @@ public class VentanaAgregar extends javax.swing.JFrame {
             }
         });
 
+        btnRegresar.setText("Regresar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblDomicilio)
+                        .addComponent(lblEdad, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(lblCodigo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtEdad)
+                    .addComponent(txtDomicilio)
+                    .addComponent(txtNombre)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblDomicilio)
-                                .addComponent(lblEdad, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(lblCodigo))
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEdad)
-                            .addComponent(txtDomicilio)
-                            .addComponent(txtNombre)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addGap(63, 63, 63))
-                    .addComponent(lblRegistro))
-                .addGap(83, 83, 83))
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblRegistro)
+                        .addGap(54, 54, 54))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(27, 27, 27)
                 .addComponent(lblRegistro)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigo)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -119,18 +185,21 @@ public class VentanaAgregar extends javax.swing.JFrame {
                     .addComponent(lblDomicilio)
                     .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnGuardar)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnRegresar))
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if(revisarEntradas()){
-            procesoGuardar();
-        }else{
-            
+        if (revisarAlmacenamiento()) {
+            if (revisarEntradas()) {
+                procesoGuardar();
+                vtnClientes.aplicarCambios(this.posClientes);
+            }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -171,6 +240,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblDomicilio;
     private javax.swing.JLabel lblEdad;
