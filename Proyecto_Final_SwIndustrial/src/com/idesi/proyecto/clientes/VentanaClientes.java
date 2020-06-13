@@ -5,6 +5,8 @@
  */
 package com.idesi.proyecto.clientes;
 
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Cristofer
@@ -12,6 +14,11 @@ package com.idesi.proyecto.clientes;
 public class VentanaClientes extends javax.swing.JFrame {
 
     private VentanaAgregar vtnAgregar = null;
+    private VentanaBuscar vtnBuscar = null;
+    private VentanaModificar vtnModificar = null;
+    private VentanaEliminar vtnEliminar = null;
+    private VentanaEstablecerCita vtnEstCita = null;
+    private VentanaListaDeCitas vtnLisCita = null;
     private Cliente[] clientes = new Cliente[5];
     private Cita[] citas = new Cita[5];
     private int posClientes = 0;
@@ -24,9 +31,39 @@ public class VentanaClientes extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void aplicarCambios(int posClientes) {
+    
+
+    public void aplicarCambiosCitas(int posCitas){
+        this.posCitas = posCitas;
+    }
+    
+    public void aplicarCambiosClientes(int posClientes) {
         this.posClientes = posClientes;
         txtClientesRegistrados.setText(String.valueOf(this.posClientes));
+        actualizarTabla();
+    }
+    
+    public void aplicarCambiosClientes() {
+        actualizarTabla();
+    }
+
+    private void actualizarTabla() {
+        TableModel modelo = tblClientes.getModel();
+
+        for (int i = 0; i < 5; i++) {
+            modelo.setValueAt(null, i, 0);
+            modelo.setValueAt(null, i, 1);
+            modelo.setValueAt(null, i, 2);
+            modelo.setValueAt(null, i, 3);
+        }
+
+        for (int x = 0; x < posClientes; x++) {
+            modelo.setValueAt(clientes[x].getCódigo_de_cliente(), x, 0);
+            modelo.setValueAt(clientes[x].getNombre(), x, 1);
+            modelo.setValueAt(clientes[x].getEdad(), x, 2);
+            modelo.setValueAt(clientes[x].getDomicilio(), x, 3);
+        }
+
     }
 
     /**
@@ -47,9 +84,10 @@ public class VentanaClientes extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         lblClientesRegistrados = new javax.swing.JLabel();
         txtClientesRegistrados = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(527, 247));
 
@@ -61,14 +99,39 @@ public class VentanaClientes extends javax.swing.JFrame {
         });
 
         btnBuscar.setText("Buscar cliente");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar datos de un cliente");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar un cliente");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnCrearCita.setText("Establecer una cita");
+        btnCrearCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearCitaActionPerformed(evt);
+            }
+        });
 
         btnListaCitas.setText("Lista de citas");
+        btnListaCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaCitasActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
 
@@ -79,6 +142,24 @@ public class VentanaClientes extends javax.swing.JFrame {
         txtClientesRegistrados.setText("0");
         txtClientesRegistrados.setEnabled(false);
 
+        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Nombre", "Edad", "Domicilio"
+            }
+        ));
+        tblClientes.setDefaultEditor(Object.class,null);
+        tblClientes.setRowHeight(tblClientes.getRowHeight() + 15);
+        tblClientes.setPreferredSize(null);
+        jScrollPane1.setViewportView(tblClientes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,43 +167,48 @@ public class VentanaClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrearCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnListaCitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(96, 96, 96)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblClientesRegistrados)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtClientesRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(btnAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnModificar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblClientesRegistrados)
-                        .addComponent(txtClientesRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCrearCita)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnListaCitas)
-                    .addComponent(btnRegresar))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(btnAgregar)
+                    .addComponent(lblClientesRegistrados)
+                    .addComponent(txtClientesRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCrearCita)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnListaCitas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRegresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -138,6 +224,56 @@ public class VentanaClientes extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (vtnBuscar == null) {
+            vtnBuscar = new VentanaBuscar(this, clientes);
+        }
+
+        vtnBuscar.posClientes = this.posClientes;
+        vtnBuscar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (vtnModificar == null) {
+            vtnModificar = new VentanaModificar(this, clientes);
+        }
+
+        vtnModificar.posClientes = this.posClientes;
+        vtnModificar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (vtnEliminar == null) {
+            vtnEliminar = new VentanaEliminar(this, clientes);
+        }
+
+        vtnEliminar.posClientes = this.posClientes;
+        vtnEliminar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCrearCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCitaActionPerformed
+        if (vtnEstCita == null) {
+            vtnEstCita = new VentanaEstablecerCita(this, citas);
+        }
+
+        vtnEstCita.posCitas = this.posCitas;
+        vtnEstCita.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCrearCitaActionPerformed
+
+    private void btnListaCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaCitasActionPerformed
+        if (vtnLisCita == null) {
+            vtnLisCita = new VentanaListaDeCitas(this, citas);
+        }
+        
+        vtnLisCita.aplicarCambios(this.posCitas);
+        vtnLisCita.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnListaCitasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +318,9 @@ public class VentanaClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnListaCitas;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClientesRegistrados;
+    private javax.swing.JTable tblClientes;
     private javax.swing.JTextField txtClientesRegistrados;
     // End of variables declaration//GEN-END:variables
 }

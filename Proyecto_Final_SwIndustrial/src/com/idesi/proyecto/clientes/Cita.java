@@ -1,33 +1,44 @@
-
 package com.idesi.proyecto.clientes;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Cita {
-    
-    Date fechaCita ;
-    double codigo;
-    String tipoExamen;
-    
-    public void setFechaCita(int hora, int minuto, int dia, int mes){
+
+    private Date fechaCita;
+    private String codigo;
+    private String tipoExamen;
+
+    public void setFechaCita(int hora, int minuto, int dia, int mes) {
         
         Calendar miCalendario = Calendar.getInstance();
-        miCalendario.set(Calendar.YEAR,2020);
-        miCalendario.set(Calendar.MONTH,mes);
-        miCalendario.set(Calendar.DATE,dia);
-        miCalendario.set(Calendar.HOUR,hora);
-        miCalendario.set(Calendar.MINUTE,minuto);
-        
-        this.fechaCita = miCalendario.getTime();
+        miCalendario.set(Calendar.YEAR, 2020);
+        miCalendario.set(Calendar.MONTH, mes);
+        miCalendario.set(Calendar.DATE, dia);
+        miCalendario.set(Calendar.HOUR, hora);
+        miCalendario.set(Calendar.MINUTE, minuto);
+        fechaCita = miCalendario.getTime();
+
     }
-        
-    public Date getFechaCita() {
+
+    public Date getCita() {
         return this.fechaCita;
     }
-    
 
-    public void setCodigo(double codigo) {
+    public String getFecha() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaConFormato = formato.format(fechaCita);
+        return fechaConFormato;
+    }
+
+    public String getHora() {
+        SimpleDateFormat formato = new SimpleDateFormat("HH:mm");
+        String horaConFormato = formato.format(fechaCita);
+        return horaConFormato;
+    }
+
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -35,12 +46,12 @@ public class Cita {
         this.tipoExamen = tipoExamen;
     }
 
-    public double getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
     public String getTipoExamen() {
         return tipoExamen;
     }
-    
+
 }

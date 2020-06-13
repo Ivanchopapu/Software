@@ -32,7 +32,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
 
     private boolean revisarAlmacenamiento() {
         if (posClientes == 5) {
-            mostrarAviso(3);
+            mostrarAviso(4);
             return false;
         } else {
             return true;
@@ -47,7 +47,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
             if (txtEdad.getText().matches("[0-9]+")) {
                 return true;
             } else {
-                mostrarAviso(2);
+                mostrarAviso(3);
                 return false;
             }
         } else {
@@ -58,19 +58,37 @@ public class VentanaAgregar extends javax.swing.JFrame {
 
     private void procesoGuardar() {
         clientes[posClientes] = new Cliente();
-        clientes[posClientes].setCódigo_de_cliente(txtCodigo.getText());
-        clientes[posClientes].setNombre(txtNombre.getText());
-        clientes[posClientes].setEdad(Integer.parseInt(txtEdad.getText()));
-        clientes[posClientes].setDomicilio(txtDomicilio.getText());
-        mostrarAviso(1);
+        clientes[posClientes].setCódigo_de_cliente(txtCodigo.getText().trim());
+        clientes[posClientes].setNombre(txtNombre.getText().trim());
+        clientes[posClientes].setEdad(Integer.parseInt(txtEdad.getText().trim()));
+        clientes[posClientes].setDomicilio(txtDomicilio.getText().trim());
         posClientes++;
+        mostrarAviso(1);
+        limpiarCampos();
+        
     }
+    
+    private void procesoRegresar(){
+        limpiarCampos();
+        vtnClientes.setVisible(true);
+        this.setVisible(false);
+        
+    }
+    
+    private void limpiarCampos(){
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtEdad.setText("");
+        txtDomicilio.setText("");
+    }
+    
 
     private void mostrarAviso(int aviso) {
         switch (aviso) {
             case 1:
                 JOptionPane.showMessageDialog(this,
                         "Cliente registrado con exito.");
+                break;
             case 2:
                 JOptionPane.showMessageDialog(
                         this,
@@ -79,7 +97,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
             case 3: 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Favor de solo introducir números en el campo de edad.");
+                        "Favor de solo introducir números enteros en el campo de edad.");
                 break;
             case 4:
                 JOptionPane.showMessageDialog(
@@ -131,6 +149,11 @@ public class VentanaAgregar extends javax.swing.JFrame {
         });
 
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,10 +221,14 @@ public class VentanaAgregar extends javax.swing.JFrame {
         if (revisarAlmacenamiento()) {
             if (revisarEntradas()) {
                 procesoGuardar();
-                vtnClientes.aplicarCambios(this.posClientes);
+                vtnClientes.aplicarCambiosClientes(this.posClientes);
             }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        procesoRegresar();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
