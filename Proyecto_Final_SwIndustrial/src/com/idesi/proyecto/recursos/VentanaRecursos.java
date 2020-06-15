@@ -6,10 +6,20 @@ public class VentanaRecursos extends javax.swing.JFrame {
 
     // Interfaz entre ventanas
     Ventana_Mostrar Obj_Ventana_Mostrar = null;
+    Ventana_Reporte Obj_Ventana_Reporte = null;
+
+    public int getTamaño() {
+        return Tamaño;
+    }
+
+    public void setTamaño(int Tamaño) {
+        this.Tamaño = Tamaño;
+    }
     Ventana_Alta_de_Producto Obj_Ventana_Alta_de_Producto = null;
 
     Producto Obj_Producto[] = new Producto[50]; //Arreglo de Productos
     int posArr = 0;     //Controla la cantidad de elementos que hay en el Arreglo
+    int Tamaño;
 
     public VentanaRecursos() {
         initComponents();
@@ -52,6 +62,11 @@ public class VentanaRecursos extends javax.swing.JFrame {
 
         btn_Reporte.setText("Reporte de Productos");
         btn_Reporte.setEnabled(false);
+        btn_Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ReporteActionPerformed(evt);
+            }
+        });
 
         btn_Regresar.setText("Regresar a la ventana principal");
 
@@ -105,44 +120,76 @@ public class VentanaRecursos extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AltaActionPerformed
 
     private void btn_Buscar_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Buscar_ProductoActionPerformed
-        
+
         int posicion = 0;
         if (Obj_Ventana_Mostrar == null) {
             Obj_Ventana_Mostrar = new Ventana_Mostrar(this, Obj_Producto);
         }
-        
-        /*
-        int Codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del Producto"));
-        while (posicion <= Obj_Producto.length) {
-            if (Codigo == Obj_Producto[posicion].getCodigo()) {
+
+        String respuesta = JOptionPane.showInputDialog("Escribe tu nombre");
+
+        while (posicion <= this.getTamaño() - 1) {
+            if (Obj_Producto[posicion].getNombreProducto().equalsIgnoreCase(respuesta)) {
+                this.setVisible(false);
+                Obj_Ventana_Mostrar.setVisible(true);
+                Obj_Ventana_Mostrar.Modo_Buscar(respuesta, posicion);
                 break;
             }
+            if (respuesta == null) {
+                break;
+            }
+            if (posicion == this.getTamaño() - 1) {
+                JOptionPane.showMessageDialog(this, "No se encontró el Registo -> " + respuesta);
+                break;
+            }
+            System.out.println("Posicion -> " + posicion);
+            System.out.println("Length -> " + this.getTamaño());
+            System.out.println(" _________");
             posicion++;
         }
-        */
-        this.setVisible(false);
-        Obj_Ventana_Mostrar.setVisible(true);
-        Obj_Ventana_Mostrar.Modo_Buscar();
     }//GEN-LAST:event_btn_Buscar_ProductoActionPerformed
 
-    
-    
+
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
         int posicion = 0;
         if (Obj_Ventana_Mostrar == null) {
             Obj_Ventana_Mostrar = new Ventana_Mostrar(this, Obj_Producto);
         }
-        int Codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del Producto"));
-        while (posicion <= Obj_Producto.length) {
+        int Codigo = 0;
+        try {
+             Codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del Producto"));
+
+        } catch (Exception e) {
+
+        } finally {
+
+        }
+        while (posicion <= this.getTamaño() - 1) {
             if (Codigo == Obj_Producto[posicion].getCodigo()) {
+                Obj_Ventana_Mostrar.Modo_Modificar(Codigo, posicion);
+                this.setVisible(false);
+                Obj_Ventana_Mostrar.setVisible(true);
                 break;
             }
+
+            if (posicion == this.getTamaño() - 1) {
+                JOptionPane.showMessageDialog(this, "No se encontró el Codigo -> " + Codigo);
+            }
+
             posicion++;
         }
-        Obj_Ventana_Mostrar.Modo_Modificar(Codigo, posicion);
-        this.setVisible(false);
-        Obj_Ventana_Mostrar.setVisible(true);
+
     }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReporteActionPerformed
+        if(Obj_Ventana_Reporte == null)
+        {
+            Obj_Ventana_Reporte = new Ventana_Reporte(this, Obj_Producto);
+        }
+        this.setVisible(false);
+        Obj_Ventana_Reporte.setVisible(true);
+        Obj_Ventana_Reporte.Actualizar(0);
+    }//GEN-LAST:event_btn_ReporteActionPerformed
 
     public static void main(String args[]) {
 

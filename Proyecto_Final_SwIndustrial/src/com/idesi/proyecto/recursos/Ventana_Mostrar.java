@@ -218,8 +218,18 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Tipo;
     // End of variables declaration//GEN-END:variables
 
-    void Modo_Buscar() {
+    void Modo_Buscar(String respuerta, int posicion) {
         btn_Aceptar.setVisible(false);
+        this.posicion = posicion;
+        String Existencia = String.valueOf(Obj_Producto[posicion].getExistencia());
+        String Codigo = String.valueOf(Obj_Producto[posicion].getCodigo());
+        String Precio = String.valueOf(Obj_Producto[posicion].getPrecio());
+        
+        txt_Cantidad.setText(Existencia);
+        txt_Codigo.setText(Codigo);
+        txt_Nombre.setText(Obj_Producto[posicion].getNombreProducto());
+        txt_Precio.setText(Precio);
+        txt_Tipo.setText(Obj_Producto[posicion].getTipoProducto());
     }
 
     void Modo_Modificar(int Codigo, int posicion) {

@@ -3,21 +3,30 @@ package com.idesi.proyecto.recursos;
 import javax.swing.JOptionPane;
 
 public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
-
+    
     VentanaRecursos Obj_VentanaRecursos = null;
     Producto[] Obj_Producto;
-
+    boolean Auxiliar = true;
+    
+    public boolean isAuxiliar() {
+        return Auxiliar;
+    }
+    
+    public void setAuxiliar(boolean Auxiliar) {
+        this.Auxiliar = Auxiliar;
+    }
+    
     public Ventana_Alta_de_Producto() {
         initComponents();
     }
-
+    
     Ventana_Alta_de_Producto(VentanaRecursos Obj_VentanaRecursos, Producto[] Obj_Producto) {
         this.Obj_VentanaRecursos = Obj_VentanaRecursos;
         this.Obj_Producto = Obj_Producto;
-
+        
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -143,50 +152,57 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_PrecioActionPerformed
 
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AceptarActionPerformed
+        
         int posicion = 0;
 
+        // Interfas
         if (Obj_VentanaRecursos == null) {
             Obj_VentanaRecursos = new VentanaRecursos();
         }
 
-        // Compara si algún dato está vacio
-        if (txt_Cantidad.getText().equalsIgnoreCase("") == true || txt_Codigo.getText().equalsIgnoreCase("") == true || txt_Nombre.getText().equalsIgnoreCase("") == true || txt_Precio.getText().equalsIgnoreCase("") == true) {
-            JOptionPane.showMessageDialog(this, "Algún dato está vacio");
-
-        } else {
-            
-            // Encuentra la posición siguiente disponible         
-            while (posicion <= Obj_Producto.length) {
-                if (Obj_Producto[posicion] == null) {
-                    break;
-                }
-                else{
-                  posicion++;  
-                }
-            }
-             
-            // Guarda los datos del nuevo Objeto
-            if (posicion < Obj_Producto.length) {
+        // Encuentra la posición siguiente disponible         
+        while (posicion <= Obj_Producto.length) {
+            if (Obj_Producto[posicion] == null) {
                 Obj_Producto[posicion] = new Producto();
-                
-                int Codigo = Integer.parseInt(txt_Codigo.getText());
-                int Existencia = Integer.parseInt(txt_Cantidad.getText());
-                int Precio = Integer.parseInt(txt_Precio.getText());
-
-                Obj_Producto[posicion].setCodigo(Codigo);
-                Obj_Producto[posicion].setExistencia(Existencia);
-                Obj_Producto[posicion].setPrecio(Precio);
-                Obj_Producto[posicion].setNombreProducto(txt_Nombre.getText());
-                Obj_Producto[posicion].setTipoProducto(box_Tipo.getSelectedItem().toString());
+                break;
+            } else {
+                posicion++;
             }
         }
-        JOptionPane.showMessageDialog(this, "El Registro se ha guardado Exitosamente");
-        txt_Codigo.setText("");
-        txt_Cantidad.setText("");
-        txt_Precio.setText("");
-        txt_Nombre.setText("");
-        Obj_VentanaRecursos.Enable_Faltantes(); // Pone a los botones enable en true
-        
+        // Guarda los datos del nuevo Objeto
+        try {       // Compara si algún dato está mal 
+            int Tamaño = Obj_VentanaRecursos.getTamaño() + 1;
+            Obj_VentanaRecursos.setTamaño(Tamaño);
+            this.setAuxiliar(true);
+            int Codigo = Integer.parseInt(txt_Codigo.getText());
+            int Existencia = Integer.parseInt(txt_Cantidad.getText());
+            int Precio = Integer.parseInt(txt_Precio.getText());
+            
+            Obj_Producto[posicion].setCodigo(Codigo);
+            Obj_Producto[posicion].setExistencia(Existencia);
+            Obj_Producto[posicion].setPrecio(Precio);
+            Obj_Producto[posicion].setNombreProducto(txt_Nombre.getText());
+            Obj_Producto[posicion].setTipoProducto(box_Tipo.getSelectedItem().toString());
+            
+            
+        } catch (Exception e) {
+            
+            this.setAuxiliar(false);
+            Obj_Producto[posicion].setCodigo(0);
+            Obj_Producto[posicion].setExistencia(0);
+            Obj_Producto[posicion].setPrecio(0);
+            Obj_Producto[posicion].setNombreProducto("");
+            Obj_Producto[posicion].setTipoProducto("");
+            limpiar();
+            JOptionPane.showMessageDialog(this, "Algún dato no está bien escrito");
+            
+        } finally {
+            if (this.isAuxiliar() == true) {
+                JOptionPane.showMessageDialog(this, "El registro se guardó ");                
+                limpiar();
+                Obj_VentanaRecursos.Enable_Faltantes();
+            }
+        }
     }//GEN-LAST:event_btn_AceptarActionPerformed
 
     private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
@@ -208,21 +224,21 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Ventana_Alta_de_Producto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Ventana_Alta_de_Producto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Ventana_Alta_de_Producto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Ventana_Alta_de_Producto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -236,6 +252,13 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
                 new Ventana_Alta_de_Producto().setVisible(true);
             }
         });
+    }
+
+    private void limpiar() {
+        txt_Cantidad.setText("");
+        txt_Codigo.setText("");
+        txt_Nombre.setText("");
+        txt_Precio.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,6 +10,15 @@ public class Producto {
     private String nombreProducto;
     private int existencia;
     private int precio;
+    private int Tamaño;
+
+    public int getTamaño() {
+        return Tamaño;
+    }
+
+    public void setTamaño(int Tamaño) {
+        this.Tamaño = Tamaño;
+    }
     
     public Producto(){}
 

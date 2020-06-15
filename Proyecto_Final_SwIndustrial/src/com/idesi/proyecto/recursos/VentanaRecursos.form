@@ -94,6 +94,9 @@
         <Property name="text" type="java.lang.String" value="Reporte de Productos"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ReporteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Regresar">
       <Properties>
