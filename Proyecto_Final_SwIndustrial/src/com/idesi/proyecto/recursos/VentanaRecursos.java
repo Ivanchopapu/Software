@@ -1,12 +1,17 @@
 package com.idesi.proyecto.recursos;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class VentanaRecursos extends javax.swing.JFrame {
 
     // Interfaz entre ventanas
     Ventana_Mostrar Obj_Ventana_Mostrar = null;
     Ventana_Reporte Obj_Ventana_Reporte = null;
+    ImagenFondo ejemplo = new ImagenFondo();
 
     public int getTamaño() {
         return Tamaño;
@@ -22,6 +27,7 @@ public class VentanaRecursos extends javax.swing.JFrame {
     int Tamaño;
 
     public VentanaRecursos() {
+        this.setContentPane(ejemplo);
         initComponents();
     }
 
@@ -287,4 +293,19 @@ public class VentanaRecursos extends javax.swing.JFrame {
         btn_Modificar.setEnabled(true);
         btn_Reporte.setEnabled(true);
     }
+    
+    class ImagenFondo extends JPanel{
+        private Image imagen;
+        
+        public void paint(Graphics g){
+           imagen = new ImageIcon(getClass().getResource("Fondo.jpg")).getImage();
+           g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
+           setOpaque(false);
+           super.paint(g);
+        }
+        
+    }
+    
+    
+    
 }
