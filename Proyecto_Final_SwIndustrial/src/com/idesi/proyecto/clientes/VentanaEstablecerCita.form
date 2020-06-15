@@ -136,7 +136,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFecha">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fecha (DD/MM:"/>
+        <Property name="text" type="java.lang.String" value="Fecha (DD/MM):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbDia">
