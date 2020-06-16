@@ -5,17 +5,38 @@
  */
 package com.idesi.proyecto;
 
+import com.idesi.proyecto.clientes.VentanaClientes;
+import com.idesi.proyecto.personal.VentanaPersonal;
+import com.idesi.proyecto.recursos.Producto;
+import com.idesi.proyecto.recursos.VentanaRecursos;
+
 /**
  *
  * @author Cristofer
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+    
+    private VentanaPersonal vtnPersonal = null;
+    private VentanaClientes vtnClientes = null;
+    private VentanaRecursos vtnRecursos = null;
+    
+    private Producto[] productos = new Producto[5];
+    private int posProducto = 0;
+    private int posCitas = 0;
 
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+    }
+    
+    public void ajustarCambiosCitas(int posCitas){
+        this.posCitas = posCitas;
+    }
+    
+    public void ajustarCambiosProductos(int posProducto){
+        this.posProducto = posProducto;
     }
 
     /**
@@ -35,12 +56,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btn_Control.setText("Control de Personal");
+        btn_Control.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ControlActionPerformed(evt);
+            }
+        });
 
         btn_Recursos.setText("Recursos Materiales");
+        btn_Recursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RecursosActionPerformed(evt);
+            }
+        });
 
         btn_Clientes.setText("Manejo de Clientes");
+        btn_Clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ClientesActionPerformed(evt);
+            }
+        });
 
         btn_Salir.setText("Salir del Sistema");
+        btn_Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,14 +89,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Clientes)
-                    .addComponent(btn_Recursos))
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Salir)
-                    .addComponent(btn_Control))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_Recursos, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(btn_Clientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_Control, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(btn_Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,6 +114,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_RecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RecursosActionPerformed
+         if(vtnRecursos == null){
+            vtnRecursos = new VentanaRecursos(this, productos);
+        }
+        
+        vtnRecursos.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_RecursosActionPerformed
+
+    private void btn_ControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ControlActionPerformed
+        if(vtnPersonal == null){
+            vtnPersonal = new VentanaPersonal(this, productos);
+        }
+        
+        vtnPersonal.aplicarCambiosExternos(this.posProducto, this.posCitas);
+        vtnPersonal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_ControlActionPerformed
+
+    private void btn_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClientesActionPerformed
+        if(vtnClientes == null){
+            vtnClientes = new VentanaClientes(this);
+        }
+        
+        vtnClientes.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_ClientesActionPerformed
+
+    private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btn_SalirActionPerformed
 
     /**
      * @param args the command line arguments

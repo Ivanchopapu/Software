@@ -1,14 +1,14 @@
 package com.idesi.proyecto.recursos;
 
-
+import com.idesi.proyecto.VentanaPrincipal;
 import javax.swing.JOptionPane;
-
 
 public class VentanaRecursos extends javax.swing.JFrame {
 
     // Interfaz entre ventanas
-    Ventana_Mostrar Obj_Ventana_Mostrar = null;
-    Ventana_Reporte Obj_Ventana_Reporte = null;
+    private VentanaPrincipal vtnPrincipal = null;
+    private Ventana_Mostrar Obj_Ventana_Mostrar = null;
+    private Ventana_Reporte Obj_Ventana_Reporte = null;
     ImagenFondo ejemplo = new ImagenFondo();
 
     public int getTamaño() {
@@ -20,13 +20,29 @@ public class VentanaRecursos extends javax.swing.JFrame {
     }
     Ventana_Alta_de_Producto Obj_Ventana_Alta_de_Producto = null;
 
-    Producto Obj_Producto[] = new Producto[50]; //Arreglo de Productos
+    Producto Obj_Producto[]; //Arreglo de Productos
     int posArr = 0;     //Controla la cantidad de elementos que hay en el Arreglo
     int Tamaño;
 
     public VentanaRecursos() {
         this.setContentPane(ejemplo);
         initComponents();
+    }
+
+    public VentanaRecursos(VentanaPrincipal vtnPrincipal, Producto[] productos) {
+        this.vtnPrincipal = vtnPrincipal;
+        this.Obj_Producto = productos;
+        initComponents();
+
+    }
+    
+    public void AplicarCambiosExternos(int posArr){
+        this.posArr = posArr;
+    }
+
+    private void procesoRegresar() {
+        vtnPrincipal.setVisible(true);
+        this.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -78,6 +94,11 @@ public class VentanaRecursos extends javax.swing.JFrame {
         });
 
         btn_Regresar.setText("Regresar a la ventana principal");
+        btn_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/recursos/imagenes/Editar.jpg"))); // NOI18N
 
@@ -104,10 +125,6 @@ public class VentanaRecursos extends javax.swing.JFrame {
                     .addComponent(btn_Reporte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Buscar_Producto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btn_Regresar)
-                .addGap(239, 239, 239))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -125,6 +142,10 @@ public class VentanaRecursos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(116, 116, 116))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Regresar)
+                .addGap(184, 184, 184))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,9 +171,9 @@ public class VentanaRecursos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Reporte)
                     .addComponent(btn_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGap(40, 40, 40)
                 .addComponent(btn_Regresar)
-                .addGap(16, 16, 16))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -207,7 +228,7 @@ public class VentanaRecursos extends javax.swing.JFrame {
         }
         int Codigo = 0;
         try {
-             Codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del Producto"));
+            Codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del Producto"));
 
         } catch (Exception e) {
 
@@ -232,14 +253,17 @@ public class VentanaRecursos extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     private void btn_ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReporteActionPerformed
-        if(Obj_Ventana_Reporte == null)
-        {
+        if (Obj_Ventana_Reporte == null) {
             Obj_Ventana_Reporte = new Ventana_Reporte(this, Obj_Producto);
         }
         this.setVisible(false);
         Obj_Ventana_Reporte.setVisible(true);
         Obj_Ventana_Reporte.Actualizar(0);
     }//GEN-LAST:event_btn_ReporteActionPerformed
+
+    private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
+        procesoRegresar();
+    }//GEN-LAST:event_btn_RegresarActionPerformed
 
     public static void main(String args[]) {
 
@@ -292,6 +316,4 @@ public class VentanaRecursos extends javax.swing.JFrame {
         btn_Reporte.setEnabled(true);
     }
 
-    
-    
 }

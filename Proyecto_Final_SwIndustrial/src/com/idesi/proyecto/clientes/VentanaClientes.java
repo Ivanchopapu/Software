@@ -1,14 +1,16 @@
-
 package com.idesi.proyecto.clientes;
 
+import com.idesi.proyecto.VentanaPrincipal;
 import javax.swing.table.TableModel;
 import com.idesi.proyecto.recursos.ImagenFondo;
+
 /**
  *
  * @author Cristofer
  */
 public class VentanaClientes extends javax.swing.JFrame {
 
+    private VentanaPrincipal vtnPrincipal = null;
     private VentanaAgregar vtnAgregar = null;
     private VentanaBuscar vtnBuscar = null;
     private VentanaModificar vtnModificar = null;
@@ -29,18 +31,31 @@ public class VentanaClientes extends javax.swing.JFrame {
         initComponents();
     }
 
-    
-
-    public void aplicarCambiosCitas(int posCitas){
-        this.posCitas = posCitas;
+    public VentanaClientes(VentanaPrincipal vtnPrincipal) {
+        this.vtnPrincipal = vtnPrincipal;
+        initComponents();
     }
-    
+
+    public void aplicarCambiosCitas(int posCitas) {
+        this.posCitas = posCitas;
+        this.btnListaCitas.setEnabled(true);
+    }
+
     public void aplicarCambiosClientes(int posClientes) {
         this.posClientes = posClientes;
         txtClientesRegistrados.setText(String.valueOf(this.posClientes));
         actualizarTabla();
+        if(this.posClientes < 1){
+            btnBuscar.setEnabled(false);
+            btnModificar.setEnabled(false);
+            btnEliminar.setEnabled(false);
+        }else{
+            btnBuscar.setEnabled(true);
+            btnModificar.setEnabled(true);
+            btnEliminar.setEnabled(true);
+        }
     }
-    
+
     public void aplicarCambiosClientes() {
         actualizarTabla();
     }
@@ -62,6 +77,12 @@ public class VentanaClientes extends javax.swing.JFrame {
             modelo.setValueAt(clientes[x].getDomicilio(), x, 3);
         }
 
+    }
+
+    private void procesoRegresar() {
+        vtnPrincipal.ajustarCambiosCitas(posCitas);
+        vtnPrincipal.setVisible(true);
+        this.setVisible(false);
     }
 
     /**
@@ -97,6 +118,7 @@ public class VentanaClientes extends javax.swing.JFrame {
         });
 
         btnBuscar.setText("Buscar cliente");
+        btnBuscar.setEnabled(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -104,6 +126,7 @@ public class VentanaClientes extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar datos de un cliente");
+        btnModificar.setEnabled(false);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
@@ -111,6 +134,7 @@ public class VentanaClientes extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar un cliente");
+        btnEliminar.setEnabled(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -132,6 +156,11 @@ public class VentanaClientes extends javax.swing.JFrame {
         });
 
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         lblClientesRegistrados.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblClientesRegistrados.setText("No. Clientes registrados: ");
@@ -267,11 +296,15 @@ public class VentanaClientes extends javax.swing.JFrame {
         if (vtnLisCita == null) {
             vtnLisCita = new VentanaListaDeCitas(this, citas);
         }
-        
+
         vtnLisCita.aplicarCambios(this.posCitas);
         vtnLisCita.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnListaCitasActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        procesoRegresar();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments

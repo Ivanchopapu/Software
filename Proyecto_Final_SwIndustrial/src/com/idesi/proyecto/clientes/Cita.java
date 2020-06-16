@@ -16,7 +16,7 @@ public class Cita {
         miCalendario.set(Calendar.YEAR, 2020);
         miCalendario.set(Calendar.MONTH, mes);
         miCalendario.set(Calendar.DATE, dia);
-        miCalendario.set(Calendar.HOUR, hora);
+        miCalendario.set(Calendar.HOUR_OF_DAY, hora);
         miCalendario.set(Calendar.MINUTE, minuto);
         fechaCita = miCalendario.getTime();
 

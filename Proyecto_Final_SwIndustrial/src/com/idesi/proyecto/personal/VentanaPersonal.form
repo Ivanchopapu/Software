@@ -89,6 +89,7 @@
     <Component class="javax.swing.JButton" name="btn_Reporte">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reporte de empleados"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ReporteActionPerformed"/>
@@ -97,6 +98,7 @@
     <Component class="javax.swing.JButton" name="btn_Buscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar un empleado"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_BuscarActionPerformed"/>
@@ -105,6 +107,7 @@
     <Component class="javax.swing.JButton" name="btn_Modificar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar Datos de un empleado"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ModificarActionPerformed"/>
@@ -113,6 +116,7 @@
     <Component class="javax.swing.JButton" name="btn_Eliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar un empleado"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EliminarActionPerformed"/>
@@ -121,6 +125,7 @@
     <Component class="javax.swing.JButton" name="btn_agregarProducto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar un producto"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_agregarProductoActionPerformed"/>

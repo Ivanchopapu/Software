@@ -34,14 +34,36 @@ public class VentanaPersonal extends javax.swing.JFrame {
         initComponents();
     }
 
-    public VentanaPersonal(VentanaPrincipal vtnPrincipal) {
+    public VentanaPersonal(VentanaPrincipal vtnPrincipal, Producto[] productos) {
         this.vtnPrincipal = vtnPrincipal;
+        this.productos = productos;
         initComponents();
+    }
+
+    public void aplicarCambiosExternos(int posProd, int posCitas) {
+        this.posProd = posProd;
+        this.posCitas = posCitas;
     }
 
     public void aplicarCambiosPersonal(int posEmp) {
         this.posEmp = posEmp;
         txtNoEmpleados.setText(String.valueOf(this.posEmp));
+        if(posEmp < 1 ){
+            btn_Reporte.setEnabled(false);
+            btn_Modificar.setEnabled(false);
+            btn_Eliminar.setEnabled(false);
+            btn_agregarProducto.setEnabled(false);
+        }else{
+            btn_Reporte.setEnabled(true);
+            btn_Modificar.setEnabled(true);
+            btn_Eliminar.setEnabled(true);
+            btn_agregarProducto.setEnabled(true);
+        }
+    }
+
+    private void procesoRegresar() {
+        vtnPrincipal.setVisible(true);
+        this.setVisible(false);
     }
 
     /**
@@ -73,6 +95,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
         });
 
         btn_Reporte.setText("Reporte de empleados");
+        btn_Reporte.setEnabled(false);
         btn_Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ReporteActionPerformed(evt);
@@ -80,6 +103,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
         });
 
         btn_Buscar.setText("Buscar un empleado");
+        btn_Buscar.setEnabled(false);
         btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_BuscarActionPerformed(evt);
@@ -87,6 +111,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
         });
 
         btn_Modificar.setText("Modificar Datos de un empleado");
+        btn_Modificar.setEnabled(false);
         btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ModificarActionPerformed(evt);
@@ -94,6 +119,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
         });
 
         btn_Eliminar.setText("Eliminar un empleado");
+        btn_Eliminar.setEnabled(false);
         btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_EliminarActionPerformed(evt);
@@ -101,6 +127,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
         });
 
         btn_agregarProducto.setText("Agregar un producto");
+        btn_agregarProducto.setEnabled(false);
         btn_agregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_agregarProductoActionPerformed(evt);
@@ -191,8 +218,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_agregarEmpleadoActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        vtnPrincipal.setVisible(true);
-        this.setVisible(false);
+      procesoRegresar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
@@ -223,7 +249,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
         vtnReporte.posEmp = this.posEmp;
         vtnReporte.posCitas = this.posCitas;
         vtnReporte.actual = 0;
-        vtnReporte.cargarDatos(0);        
+        vtnReporte.cargarDatos(0);
         vtnReporte.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_ReporteActionPerformed
@@ -234,7 +260,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
         }
 
         vtnAgregarProd.posEmp = this.posEmp;
-        vtnAgregarProd.posProd = this.posProd;       
+        vtnAgregarProd.posProd = this.posProd;
         vtnAgregarProd.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_agregarProductoActionPerformed

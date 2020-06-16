@@ -50,6 +50,8 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
     }
     
     private void procesoGuardar() {
+        System.out.println("Hora: " + (cmbHora.getSelectedItem().toString()).split(":")[0]);
+        System.out.println("Dia: " + (cmbDia.getSelectedItem().toString()));
         citas[posCitas] = new Cita();
         citas[posCitas].setCodigo(txtCodigo.getText().trim());
         citas[posCitas].setFechaCita(

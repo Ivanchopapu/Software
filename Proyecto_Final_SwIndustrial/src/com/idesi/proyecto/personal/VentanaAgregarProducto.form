@@ -34,12 +34,6 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblTipo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cmbTipo" min="-2" pref="181" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblExistencia" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -50,6 +44,17 @@
                                   <Component id="txtExistencia" alignment="0" pref="182" max="32767" attributes="0"/>
                                   <Component id="txtNombre" max="32767" attributes="0"/>
                                   <Component id="txtPrecio" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtCodigo" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <Component id="cmbTipo" min="-2" pref="181" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -70,14 +75,9 @@
                               <Group type="102" attributes="0">
                                   <Component id="lblCodigoEmp" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtCodigo" min="-2" pref="180" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="txtCodigoEmp" min="-2" pref="181" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="btnValidar" min="-2" pref="80" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="txtCodigoEmp" min="-2" pref="181" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnValidar" min="-2" pref="80" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
