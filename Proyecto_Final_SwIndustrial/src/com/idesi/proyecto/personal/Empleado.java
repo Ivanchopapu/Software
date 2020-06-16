@@ -4,14 +4,14 @@ package com.idesi.proyecto.personal;
 import com.idesi.proyecto.Persona;
 
 public class Empleado extends Persona{
-    private int codigoEmpleado;
+    private String codigoEmpleado;
     private String tipoEmpleado;
     private String RFC;
     private double salario;
     
     public Empleado(){}
 
-    public Empleado(String nombre, int edad, int codigoEmpleado, String tipoEmpleado, String RFC, double salario) {
+    public Empleado(String nombre, int edad, String codigoEmpleado, String tipoEmpleado, String RFC, double salario) {
         this.nombre = nombre;
         this.edad = edad;
         this.codigoEmpleado = codigoEmpleado;
@@ -20,11 +20,11 @@ public class Empleado extends Persona{
         this.salario = salario;
     }
 
-    public int getCodigoEmpleado() {
+    public String getCodigoEmpleado() {
         return codigoEmpleado;
     }
 
-    public void setCodigoEmpleado(int codigoEmpleado) {
+    public void setCodigoEmpleado(String codigoEmpleado) {
         this.codigoEmpleado = codigoEmpleado;
     }
 

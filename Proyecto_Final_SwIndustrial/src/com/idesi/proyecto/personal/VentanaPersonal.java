@@ -5,17 +5,43 @@
  */
 package com.idesi.proyecto.personal;
 
+import com.idesi.proyecto.VentanaPrincipal;
+import com.idesi.proyecto.recursos.Producto;
+
 /**
  *
  * @author Hola
  */
 public class VentanaPersonal extends javax.swing.JFrame {
 
+    private VentanaPrincipal vtnPrincipal = null;
+    private VentanaAgregar vtnAgregar = null;
+    private VentanaReporte vtnReporte = null;
+    private VentanaBuscar vtnBuscar = null;
+    private VentanaModificar vtnModificar = null;
+    private VentanaEliminar vtnEliminar = null;
+    private VentanaAgregarProducto vtnAgregarProd = null;
+    private Empleado[] empleados = new Empleado[5];
+    private Producto[] productos;
+    private int posEmp = 0;
+    private int posProd = 0;
+    private int posCitas = 0;
+
     /**
      * Creates new form VentanaPersonal
      */
     public VentanaPersonal() {
         initComponents();
+    }
+
+    public VentanaPersonal(VentanaPrincipal vtnPrincipal) {
+        this.vtnPrincipal = vtnPrincipal;
+        initComponents();
+    }
+
+    public void aplicarCambiosPersonal(int posEmp) {
+        this.posEmp = posEmp;
+        txtNoEmpleados.setText(String.valueOf(this.posEmp));
     }
 
     /**
@@ -33,15 +59,32 @@ public class VentanaPersonal extends javax.swing.JFrame {
         btn_Modificar = new javax.swing.JButton();
         btn_Eliminar = new javax.swing.JButton();
         btn_agregarProducto = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        lblNoEmpleados = new javax.swing.JLabel();
+        txtNoEmpleados = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btn_agregarEmpleado.setText("Agregar un empleado");
+        btn_agregarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarEmpleadoActionPerformed(evt);
+            }
+        });
 
         btn_Reporte.setText("Reporte de empleados");
+        btn_Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ReporteActionPerformed(evt);
+            }
+        });
 
         btn_Buscar.setText("Buscar un empleado");
+        btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BuscarActionPerformed(evt);
+            }
+        });
 
         btn_Modificar.setText("Modificar Datos de un empleado");
         btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -51,38 +94,65 @@ public class VentanaPersonal extends javax.swing.JFrame {
         });
 
         btn_Eliminar.setText("Eliminar un empleado");
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
 
         btn_agregarProducto.setText("Agregar un producto");
+        btn_agregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarProductoActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("Regresar a la ventana principal");
+        btnRegresar.setText("Regresar a la ventana principal");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
+        lblNoEmpleados.setText("No. Empleados registrados:");
+
+        txtNoEmpleados.setEditable(false);
+        txtNoEmpleados.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_agregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Reporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_agregarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Eliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btn_Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btn_agregarEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_Modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_Buscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_Eliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_agregarProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(65, 65, 65)
-                .addComponent(jButton7)
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addGap(57, 57, 57)
+                        .addComponent(lblNoEmpleados)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNoEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(332, 332, 332)
+                        .addComponent(btnRegresar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(btn_agregarEmpleado)
-                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_agregarEmpleado)
+                    .addComponent(lblNoEmpleados)
+                    .addComponent(txtNoEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Reporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Buscar)
@@ -90,23 +160,84 @@ public class VentanaPersonal extends javax.swing.JFrame {
                 .addComponent(btn_Modificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Eliminar)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_agregarProducto)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7)
-                        .addGap(71, 71, 71))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_agregarProducto)
+                    .addComponent(btnRegresar))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
-        // TODO add your handling code here:
+        if (vtnModificar == null) {
+            vtnModificar = new VentanaModificar(this, empleados);
+        }
+
+        vtnModificar.posEmp = this.posEmp;
+        vtnModificar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_agregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarEmpleadoActionPerformed
+        if (vtnAgregar == null) {
+            vtnAgregar = new VentanaAgregar(this, empleados);
+        }
+
+        vtnAgregar.posEmp = this.posEmp;
+        vtnAgregar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_agregarEmpleadoActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        vtnPrincipal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
+        if (vtnBuscar == null) {
+            vtnBuscar = new VentanaBuscar(this, empleados);
+        }
+
+        vtnBuscar.posEmp = this.posEmp;
+        vtnBuscar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_BuscarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        if (vtnEliminar == null) {
+            vtnEliminar = new VentanaEliminar(this, empleados);
+        }
+
+        vtnEliminar.posEmp = this.posEmp;
+        vtnEliminar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_EliminarActionPerformed
+
+    private void btn_ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReporteActionPerformed
+        if (vtnReporte == null) {
+            vtnReporte = new VentanaReporte(this, empleados);
+        }
+
+        vtnReporte.posEmp = this.posEmp;
+        vtnReporte.posCitas = this.posCitas;
+        vtnReporte.actual = 0;
+        vtnReporte.cargarDatos(0);        
+        vtnReporte.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_ReporteActionPerformed
+
+    private void btn_agregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarProductoActionPerformed
+        if (vtnAgregarProd == null) {
+            vtnAgregarProd = new VentanaAgregarProducto(this, empleados, productos);
+        }
+
+        vtnAgregarProd.posEmp = this.posEmp;
+        vtnAgregarProd.posProd = this.posProd;       
+        vtnAgregarProd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_agregarProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,12 +275,14 @@ public class VentanaPersonal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btn_Buscar;
     private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_Modificar;
     private javax.swing.JButton btn_Reporte;
     private javax.swing.JButton btn_agregarEmpleado;
     private javax.swing.JButton btn_agregarProducto;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel lblNoEmpleados;
+    private javax.swing.JTextField txtNoEmpleados;
     // End of variables declaration//GEN-END:variables
 }
