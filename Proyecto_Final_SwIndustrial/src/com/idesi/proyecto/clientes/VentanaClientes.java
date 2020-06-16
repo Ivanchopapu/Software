@@ -49,10 +49,16 @@ public class VentanaClientes extends javax.swing.JFrame {
             btnBuscar.setEnabled(false);
             btnModificar.setEnabled(false);
             btnEliminar.setEnabled(false);
+            mni_Buscar_cliente.setEnabled(false);
+            mni_Modificar_datos_de_un_cliente.setEnabled(false);
+            mni_Eliminar_un_cliente.setEnabled(false);
         }else{
             btnBuscar.setEnabled(true);
             btnModificar.setEnabled(true);
             btnEliminar.setEnabled(true);
+            mni_Buscar_cliente.setEnabled(true);
+            mni_Modificar_datos_de_un_cliente.setEnabled(true);
+            mni_Eliminar_un_cliente.setEnabled(true);
         }
     }
 
@@ -105,6 +111,15 @@ public class VentanaClientes extends javax.swing.JFrame {
         txtClientesRegistrados = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Agregar_Cliente = new javax.swing.JMenuItem();
+        mni_Buscar_cliente = new javax.swing.JMenuItem();
+        mni_Modificar_datos_de_un_cliente = new javax.swing.JMenuItem();
+        mni_Eliminar_un_cliente = new javax.swing.JMenuItem();
+        mni_Establecer_una_cita = new javax.swing.JMenuItem();
+        mni_Lista_de_citas = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -186,6 +201,71 @@ public class VentanaClientes extends javax.swing.JFrame {
         tblClientes.setRowHeight(tblClientes.getRowHeight() + 15);
         tblClientes.setPreferredSize(null);
         jScrollPane1.setViewportView(tblClientes);
+
+        jMenu1.setText("Archivo");
+
+        mni_Agregar_Cliente.setText("Agregar Cliente");
+        mni_Agregar_Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Agregar_ClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Agregar_Cliente);
+
+        mni_Buscar_cliente.setText("Buscar cliente");
+        mni_Buscar_cliente.setEnabled(false);
+        mni_Buscar_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Buscar_clienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Buscar_cliente);
+
+        mni_Modificar_datos_de_un_cliente.setText("Modificar datos de un cliente");
+        mni_Modificar_datos_de_un_cliente.setEnabled(false);
+        mni_Modificar_datos_de_un_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Modificar_datos_de_un_clienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Modificar_datos_de_un_cliente);
+
+        mni_Eliminar_un_cliente.setText("Eliminar un cliente");
+        mni_Eliminar_un_cliente.setEnabled(false);
+        mni_Eliminar_un_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Eliminar_un_clienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Eliminar_un_cliente);
+
+        mni_Establecer_una_cita.setText("Establecer una cita");
+        mni_Establecer_una_cita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Establecer_una_citaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Establecer_una_cita);
+
+        mni_Lista_de_citas.setText("Lista de citas");
+        mni_Lista_de_citas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Lista_de_citasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Lista_de_citas);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,6 +386,34 @@ public class VentanaClientes extends javax.swing.JFrame {
         procesoRegresar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
+    private void mni_Agregar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Agregar_ClienteActionPerformed
+        this.btnAgregarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Agregar_ClienteActionPerformed
+
+    private void mni_Buscar_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Buscar_clienteActionPerformed
+        this.btnBuscarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Buscar_clienteActionPerformed
+
+    private void mni_Modificar_datos_de_un_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Modificar_datos_de_un_clienteActionPerformed
+        this.btnModificarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Modificar_datos_de_un_clienteActionPerformed
+
+    private void mni_Eliminar_un_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Eliminar_un_clienteActionPerformed
+        this.btnEliminarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Eliminar_un_clienteActionPerformed
+
+    private void mni_Establecer_una_citaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Establecer_una_citaActionPerformed
+        this.btnCrearCitaActionPerformed(evt);
+    }//GEN-LAST:event_mni_Establecer_una_citaActionPerformed
+
+    private void mni_Lista_de_citasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Lista_de_citasActionPerformed
+        this.btnListaCitasActionPerformed(evt);
+    }//GEN-LAST:event_mni_Lista_de_citasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -349,8 +457,17 @@ public class VentanaClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnListaCitas;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClientesRegistrados;
+    private javax.swing.JMenuItem mni_Agregar_Cliente;
+    private javax.swing.JMenuItem mni_Buscar_cliente;
+    private javax.swing.JMenuItem mni_Eliminar_un_cliente;
+    private javax.swing.JMenuItem mni_Establecer_una_cita;
+    private javax.swing.JMenuItem mni_Lista_de_citas;
+    private javax.swing.JMenuItem mni_Modificar_datos_de_un_cliente;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTextField txtClientesRegistrados;
     // End of variables declaration//GEN-END:variables

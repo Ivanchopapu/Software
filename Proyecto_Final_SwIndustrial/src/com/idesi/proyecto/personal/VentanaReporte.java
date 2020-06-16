@@ -43,6 +43,11 @@ public class VentanaReporte extends javax.swing.JFrame {
         lblSalario = new javax.swing.JLabel();
         txtSalario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Anterior = new javax.swing.JMenuItem();
+        mni_Siguiente = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mostrar");
@@ -94,6 +99,36 @@ public class VentanaReporte extends javax.swing.JFrame {
         txtSalario.setEditable(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/personal/Imagenes/Reporte_de_persona.jpg"))); // NOI18N
+
+        jMenu1.setText("Archivo");
+
+        mni_Anterior.setText("Anterior");
+        mni_Anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_AnteriorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Anterior);
+
+        mni_Siguiente.setText("Siguiente");
+        mni_Siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_SiguienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Siguiente);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,7 +213,7 @@ public class VentanaReporte extends javax.swing.JFrame {
                             .addComponent(lblTipo)
                             .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSiguiente)
                             .addComponent(btnAnterior))
                         .addGap(23, 23, 23))
@@ -246,6 +281,18 @@ public class VentanaReporte extends javax.swing.JFrame {
         anterior();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
+    private void mni_AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_AnteriorActionPerformed
+        this.btnAnteriorActionPerformed(evt);
+    }//GEN-LAST:event_mni_AnteriorActionPerformed
+
+    private void mni_SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_SiguienteActionPerformed
+        this.btnSiguienteActionPerformed(evt);
+    }//GEN-LAST:event_mni_SiguienteActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -287,12 +334,17 @@ public class VentanaReporte extends javax.swing.JFrame {
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRFC;
     private javax.swing.JLabel lblSalario;
     private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenuItem mni_Anterior;
+    private javax.swing.JMenuItem mni_Regresar;
+    private javax.swing.JMenuItem mni_Siguiente;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;

@@ -14,7 +14,7 @@ import com.idesi.proyecto.recursos.ImagenFondo;
  * @author Cristofer
  */
 public class VentanaModificar extends javax.swing.JFrame {
-    
+
     private VentanaPersonal vtnPersonal;
     private Empleado[] empleados;
     ImagenFondo ejemplo = new ImagenFondo();
@@ -28,14 +28,14 @@ public class VentanaModificar extends javax.swing.JFrame {
     public VentanaModificar() {
         initComponents();
     }
-    
+
     public VentanaModificar(VentanaPersonal vtnPersonal, Empleado[] empleados) {
         this.vtnPersonal = vtnPersonal;
         this.empleados = empleados;
         this.setContentPane(ejemplo);
         initComponents();
     }
-    
+
     private boolean revisarEntrada() {
         if (!(txtBuscado.getText().equals(""))) {
             return true;
@@ -44,7 +44,7 @@ public class VentanaModificar extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     private void procesoBuscar() {
         String buscado = txtBuscado.getText();
         for (int i = 0; i < posEmp; i++) {
@@ -52,26 +52,28 @@ public class VentanaModificar extends javax.swing.JFrame {
                 posBusqueda = i;
             }
         }
-        
+
         if (posBusqueda < 5) {
             mostrarEmpleado();
             posModificar = posBusqueda;
             posBusqueda = 5;
             btnGuardar.setEnabled(true);
+            mni_Guardar_Cambios.setEnabled(true);
             txtCodigo.setEnabled(true);
             txtNombre.setEnabled(true);
             txtEdad.setEnabled(true);
             txtRFC.setEnabled(true);
             cmbTipo.setEnabled(true);
-            
+
         } else {
             mostrarAviso(3);
             btnGuardar.setEnabled(false);
+            mni_Guardar_Cambios.setEnabled(false);
             limpiarCamposBusquedaNoEncontrada();
         }
-        
+
     }
-    
+
     private void mostrarEmpleado() {
         txtCodigo.setText(empleados[posBusqueda].getCodigoEmpleado());
         txtNombre.setText(empleados[posBusqueda].getNombre());
@@ -80,9 +82,9 @@ public class VentanaModificar extends javax.swing.JFrame {
         if (!(empleados[posBusqueda].getTipoEmpleado().equals(cmbTipo.getItemAt(0).toString()))) {
             cmbTipo.setSelectedIndex(1);
         }
-        
+
     }
-    
+
     private void procesoModificar() {
         empleados[posModificar].setCodigoEmpleado(txtCodigo.getText().trim());
         empleados[posModificar].setNombre(txtNombre.getText().trim());
@@ -97,9 +99,9 @@ public class VentanaModificar extends javax.swing.JFrame {
         cmbTipo.setEnabled(false);
         limpiarCampos();
         mostrarAviso(1);
-        
+
     }
-    
+
     private boolean revisarCambios() {
         if (!(txtNombre.getText().equals(""))
                 && !(txtCodigo.getText().equals(""))
@@ -116,14 +118,14 @@ public class VentanaModificar extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     private void procesoRegresar() {
         limpiarCampos();
         vtnPersonal.setVisible(true);
         this.setVisible(false);
-        
+
     }
-    
+
     private void limpiarCampos() {
         txtBuscado.setText("");
         txtCodigo.setText("");
@@ -131,14 +133,14 @@ public class VentanaModificar extends javax.swing.JFrame {
         txtEdad.setText("");
         txtRFC.setText("");
     }
-    
+
     private void limpiarCamposBusquedaNoEncontrada() {
         txtCodigo.setText("");
         txtNombre.setText("");
         txtEdad.setText("");
         txtRFC.setText("");
     }
-    
+
     private void mostrarAviso(int aviso) {
         switch (aviso) {
             case 1:
@@ -178,6 +180,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         lblTitulo = new javax.swing.JLabel();
         lblBuscado = new javax.swing.JLabel();
         txtBuscado = new javax.swing.JTextField();
@@ -195,6 +198,15 @@ public class VentanaModificar extends javax.swing.JFrame {
         lblTipo = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Buscar = new javax.swing.JMenuItem();
+        mni_Guardar_Cambios = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mni_Borrar = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -252,6 +264,49 @@ public class VentanaModificar extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/personal/Imagenes/Editar_Persona.jpg"))); // NOI18N
 
+        jMenu1.setText("Archivo");
+
+        mni_Buscar.setText("Buscar");
+        mni_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BuscarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Buscar);
+
+        mni_Guardar_Cambios.setText("Guardar Cambios");
+        mni_Guardar_Cambios.setEnabled(false);
+        mni_Guardar_Cambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Guardar_CambiosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Guardar_Cambios);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edicion");
+
+        mni_Borrar.setText("Borrar");
+        mni_Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BorrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mni_Borrar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -261,7 +316,7 @@ public class VentanaModificar extends javax.swing.JFrame {
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -352,6 +407,26 @@ public class VentanaModificar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void mni_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BuscarActionPerformed
+        this.btnBuscarActionPerformed(evt);
+    }//GEN-LAST:event_mni_BuscarActionPerformed
+
+    private void mni_Guardar_CambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Guardar_CambiosActionPerformed
+        this.btnGuardarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Guardar_CambiosActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
+    private void mni_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BorrarActionPerformed
+        txtBuscado.setText("");
+        txtCodigo.setText("");
+        txtEdad.setText("");
+        txtNombre.setText("");
+        txtRFC.setText("");
+    }//GEN-LAST:event_mni_BorrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -396,6 +471,10 @@ public class VentanaModificar extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblBuscado;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblEdad;
@@ -403,6 +482,10 @@ public class VentanaModificar extends javax.swing.JFrame {
     private javax.swing.JLabel lblRFC;
     private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenuItem mni_Borrar;
+    private javax.swing.JMenuItem mni_Buscar;
+    private javax.swing.JMenuItem mni_Guardar_Cambios;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTextField txtBuscado;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEdad;

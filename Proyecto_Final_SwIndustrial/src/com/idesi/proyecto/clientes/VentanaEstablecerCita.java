@@ -1,4 +1,3 @@
-
 package com.idesi.proyecto.clientes;
 
 import java.time.Month;
@@ -6,6 +5,7 @@ import java.time.YearMonth;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import com.idesi.proyecto.recursos.ImagenFondo;
+
 /**
  *
  * @author Cristofer
@@ -129,6 +129,13 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Buscar_Cliente = new javax.swing.JMenuItem();
+        mni_Guardar = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mni_Borrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -140,6 +147,11 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
         lblCodigo.setText("Codigo del cliente:");
 
         btnBuscar.setText("Buscar Cliente");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         lblTipo.setText("Tipo de examen:");
 
@@ -181,6 +193,48 @@ cmbMes.addActionListener(new java.awt.event.ActionListener() {
     });
 
     jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/clientes/Imagenes/Lupita.jpg"))); // NOI18N
+
+    jMenu1.setText("Archivo");
+
+    mni_Buscar_Cliente.setText("Buscar Cliente");
+    mni_Buscar_Cliente.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mni_Buscar_ClienteActionPerformed(evt);
+        }
+    });
+    jMenu1.add(mni_Buscar_Cliente);
+
+    mni_Guardar.setText("Guardar");
+    mni_Guardar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mni_GuardarActionPerformed(evt);
+        }
+    });
+    jMenu1.add(mni_Guardar);
+
+    mni_Regresar.setText("Regresar");
+    mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mni_RegresarActionPerformed(evt);
+        }
+    });
+    jMenu1.add(mni_Regresar);
+
+    jMenuBar1.add(jMenu1);
+
+    jMenu2.setText("Edicion");
+
+    mni_Borrar.setText("Borrar");
+    mni_Borrar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mni_BorrarActionPerformed(evt);
+        }
+    });
+    jMenu2.add(mni_Borrar);
+
+    jMenuBar1.add(jMenu2);
+
+    setJMenuBar(jMenuBar1);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -252,7 +306,7 @@ cmbMes.addActionListener(new java.awt.event.ActionListener() {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(btnGuardar)
                 .addComponent(btnRegresar))
-            .addContainerGap(27, Short.MAX_VALUE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     pack();
@@ -291,6 +345,26 @@ cmbMes.addActionListener(new java.awt.event.ActionListener() {
             }
         }
     }//GEN-LAST:event_cmbMesActionPerformed
+
+    private void mni_Buscar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Buscar_ClienteActionPerformed
+        
+    }//GEN-LAST:event_mni_Buscar_ClienteActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void mni_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_GuardarActionPerformed
+        this.btnBuscarActionPerformed(evt);
+    }//GEN-LAST:event_mni_GuardarActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
+    private void mni_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BorrarActionPerformed
+        txtCodigo.setText("");
+    }//GEN-LAST:event_mni_BorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,11 +411,18 @@ cmbMes.addActionListener(new java.awt.event.ActionListener() {
     private javax.swing.JComboBox<String> cmbMes;
     private javax.swing.JComboBox<String> cmbTipoExamen;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JLabel lblTipo;
+    private javax.swing.JMenuItem mni_Borrar;
+    private javax.swing.JMenuItem mni_Buscar_Cliente;
+    private javax.swing.JMenuItem mni_Guardar;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

@@ -49,7 +49,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
         for (int i = 0; i < posEmp; i++) {
             if (buscado.equals(empleados[i].getCodigoEmpleado())) {
                 posBusqueda = i;
-                
+
             }
         }
 
@@ -133,6 +133,12 @@ public class VentanaBuscar extends javax.swing.JFrame {
         lblRFC1 = new javax.swing.JLabel();
         txtTipo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Buscar = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mni_Borrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -181,6 +187,40 @@ public class VentanaBuscar extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/personal/Imagenes/Buscar_Empleadop-jpg.jpg"))); // NOI18N
 
+        jMenu1.setText("Archivo");
+
+        mni_Buscar.setText("Buscar");
+        mni_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BuscarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Buscar);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edicion");
+
+        mni_Borrar.setText("Borrar");
+        mni_Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BorrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mni_Borrar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,7 +230,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(75, 251, Short.MAX_VALUE)
+                                .addGap(75, 212, Short.MAX_VALUE)
                                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(141, 141, 141)
@@ -283,6 +323,23 @@ public class VentanaBuscar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void mni_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BuscarActionPerformed
+        this.btnBuscarActionPerformed(evt);
+    }//GEN-LAST:event_mni_BuscarActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
+    private void mni_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BorrarActionPerformed
+        txtBuscado.setText("");
+        txtCodigo.setText("");
+        txtEdad.setText("");
+        txtNombre.setText("");
+        txtRFC.setText("");
+        txtTipo.setText("");
+    }//GEN-LAST:event_mni_BorrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,6 +380,9 @@ public class VentanaBuscar extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBuscado;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblEdad;
@@ -330,6 +390,9 @@ public class VentanaBuscar extends javax.swing.JFrame {
     private javax.swing.JLabel lblRFC;
     private javax.swing.JLabel lblRFC1;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenuItem mni_Borrar;
+    private javax.swing.JMenuItem mni_Buscar;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTextField txtBuscado;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEdad;

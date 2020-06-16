@@ -72,6 +72,9 @@ public class VentanaListaDeCitas extends javax.swing.JFrame {
         txtCitasRegistradas = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCitas = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Regresar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -109,6 +112,20 @@ public class VentanaListaDeCitas extends javax.swing.JFrame {
         tblCitas.setPreferredSize(null);
         jScrollPane1.setViewportView(tblCitas);
 
+        jMenu1.setText("Archivo");
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,7 +149,7 @@ public class VentanaListaDeCitas extends javax.swing.JFrame {
                     .addComponent(lblCitasRegistradas)
                     .addComponent(txtCitasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegresar)
                 .addContainerGap())
@@ -144,6 +161,10 @@ public class VentanaListaDeCitas extends javax.swing.JFrame {
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         procesoRegresar();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,8 +204,11 @@ public class VentanaListaDeCitas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCitasRegistradas;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTable tblCitas;
     private javax.swing.JTextField txtCitasRegistradas;
     // End of variables declaration//GEN-END:variables

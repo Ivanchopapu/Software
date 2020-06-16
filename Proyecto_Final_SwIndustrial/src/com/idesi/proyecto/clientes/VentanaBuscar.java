@@ -1,4 +1,3 @@
-
 package com.idesi.proyecto.clientes;
 
 import com.idesi.proyecto.recursos.ImagenFondo;
@@ -124,6 +123,12 @@ public class VentanaBuscar extends javax.swing.JFrame {
         txtDomicilio = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Buscar = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mni_Borrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -172,6 +177,40 @@ public class VentanaBuscar extends javax.swing.JFrame {
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/clientes/Imagenes/Buscar_Persona.jpg"))); // NOI18N
+
+        jMenu1.setText("Archivo");
+
+        mni_Buscar.setText("Buscar");
+        mni_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BuscarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Buscar);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edicion");
+
+        mni_Borrar.setText("Borrar");
+        mni_Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BorrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mni_Borrar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,7 +293,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
                         .addGap(61, 61, 61)
                         .addComponent(btnRegresar))
                     .addComponent(jLabel1))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,6 +312,22 @@ public class VentanaBuscar extends javax.swing.JFrame {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void mni_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BuscarActionPerformed
+        this.btnBuscarActionPerformed(evt);
+    }//GEN-LAST:event_mni_BuscarActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
+    private void mni_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BorrarActionPerformed
+        txtBuscado.setText("");
+        txtCodigo.setText("");
+        txtDomicilio.setText("");
+        txtEdad.setText("");
+        txtNombre.setText("");
+    }//GEN-LAST:event_mni_BorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,12 +368,18 @@ public class VentanaBuscar extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBuscado;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblDomicilio;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenuItem mni_Borrar;
+    private javax.swing.JMenuItem mni_Buscar;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTextField txtBuscado;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDomicilio;

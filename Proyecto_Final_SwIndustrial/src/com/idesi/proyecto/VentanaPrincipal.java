@@ -10,7 +10,7 @@ import com.idesi.proyecto.personal.VentanaPersonal;
 import com.idesi.proyecto.recursos.Producto;
 import com.idesi.proyecto.recursos.VentanaRecursos;
 import com.idesi.proyecto.recursos.ImagenFondo;
-/**
+/**-
  *
  * @author Cristofer
  */
@@ -58,6 +58,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mn_Manejo_de_Clientes = new javax.swing.JMenu();
+        mn_Recursos_Materiales = new javax.swing.JMenuItem();
+        mn_Control_de_personal = new javax.swing.JMenuItem();
+        mn_Manejo_de_clientes = new javax.swing.JMenuItem();
+        mn_Salir_del_Sistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +102,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/Clientejpg.jpg"))); // NOI18N
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/Salir_del_sistema.jpg"))); // NOI18N
+
+        mn_Manejo_de_Clientes.setText("Archivo");
+
+        mn_Recursos_Materiales.setText("Recursos Materiales");
+        mn_Recursos_Materiales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_Recursos_MaterialesActionPerformed(evt);
+            }
+        });
+        mn_Manejo_de_Clientes.add(mn_Recursos_Materiales);
+
+        mn_Control_de_personal.setText("Control de personal");
+        mn_Control_de_personal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_Control_de_personalActionPerformed(evt);
+            }
+        });
+        mn_Manejo_de_Clientes.add(mn_Control_de_personal);
+
+        mn_Manejo_de_clientes.setText("Manejo de Clientes");
+        mn_Manejo_de_clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_Manejo_de_clientesActionPerformed(evt);
+            }
+        });
+        mn_Manejo_de_Clientes.add(mn_Manejo_de_clientes);
+
+        mn_Salir_del_Sistema.setText("Salir del Sistema");
+        mn_Salir_del_Sistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_Salir_del_SistemaActionPerformed(evt);
+            }
+        });
+        mn_Manejo_de_Clientes.add(mn_Salir_del_Sistema);
+
+        jMenuBar1.add(mn_Manejo_de_Clientes);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,6 +235,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btn_SalirActionPerformed
 
+    private void mn_Recursos_MaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_Recursos_MaterialesActionPerformed
+        this.btn_RecursosActionPerformed(evt);
+    }//GEN-LAST:event_mn_Recursos_MaterialesActionPerformed
+
+    private void mn_Control_de_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_Control_de_personalActionPerformed
+        this.btn_ControlActionPerformed(evt);
+    }//GEN-LAST:event_mn_Control_de_personalActionPerformed
+
+    private void mn_Manejo_de_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_Manejo_de_clientesActionPerformed
+        this.btn_ClientesActionPerformed(evt);   
+    }//GEN-LAST:event_mn_Manejo_de_clientesActionPerformed
+
+    private void mn_Salir_del_SistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_Salir_del_SistemaActionPerformed
+        this.btn_SalirActionPerformed(evt);
+    }//GEN-LAST:event_mn_Salir_del_SistemaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,5 +295,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem mn_Control_de_personal;
+    private javax.swing.JMenu mn_Manejo_de_Clientes;
+    private javax.swing.JMenuItem mn_Manejo_de_clientes;
+    private javax.swing.JMenuItem mn_Recursos_Materiales;
+    private javax.swing.JMenuItem mn_Salir_del_Sistema;
     // End of variables declaration//GEN-END:variables
 }

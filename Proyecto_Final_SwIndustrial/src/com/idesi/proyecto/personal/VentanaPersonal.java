@@ -52,16 +52,26 @@ public class VentanaPersonal extends javax.swing.JFrame {
     public void aplicarCambiosPersonal(int posEmp) {
         this.posEmp = posEmp;
         txtNoEmpleados.setText(String.valueOf(this.posEmp));
-        if(posEmp < 1 ){
+        if (posEmp < 1) {
             btn_Reporte.setEnabled(false);
             btn_Modificar.setEnabled(false);
             btn_Eliminar.setEnabled(false);
             btn_agregarProducto.setEnabled(false);
-        }else{
+            mni_Reporte_de_empleados.setEnabled(false);
+            mni_Buscar_un_empleado.setEnabled(false);
+            mni_Modificar_Datos_de_un_empleado.setEnabled(false);
+            mni_Eliminar_un_empleado.setEnabled(false);
+            mni_Agregar_un_producto.setEnabled(false);
+        } else {
             btn_Reporte.setEnabled(true);
             btn_Modificar.setEnabled(true);
             btn_Eliminar.setEnabled(true);
             btn_agregarProducto.setEnabled(true);
+            mni_Reporte_de_empleados.setEnabled(true);
+            mni_Buscar_un_empleado.setEnabled(true);
+            mni_Modificar_Datos_de_un_empleado.setEnabled(true);
+            mni_Eliminar_un_empleado.setEnabled(true);
+            mni_Agregar_un_producto.setEnabled(true);
         }
     }
 
@@ -89,6 +99,15 @@ public class VentanaPersonal extends javax.swing.JFrame {
         lblNoEmpleados = new javax.swing.JLabel();
         txtNoEmpleados = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Agregar_un_empleado = new javax.swing.JMenuItem();
+        mni_Reporte_de_empleados = new javax.swing.JMenuItem();
+        mni_Buscar_un_empleado = new javax.swing.JMenuItem();
+        mni_Modificar_Datos_de_un_empleado = new javax.swing.JMenuItem();
+        mni_Eliminar_un_empleado = new javax.swing.JMenuItem();
+        mni_Agregar_un_producto = new javax.swing.JMenuItem();
+        mni_Regresar_a_la_ventana_principal = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,6 +177,73 @@ public class VentanaPersonal extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/Personal.jpg"))); // NOI18N
 
+        jMenu1.setText("Archivo");
+
+        mni_Agregar_un_empleado.setText("Agregar un empleado");
+        mni_Agregar_un_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Agregar_un_empleadoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Agregar_un_empleado);
+
+        mni_Reporte_de_empleados.setText("Reporte de empleados");
+        mni_Reporte_de_empleados.setEnabled(false);
+        mni_Reporte_de_empleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Reporte_de_empleadosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Reporte_de_empleados);
+
+        mni_Buscar_un_empleado.setText("Buscar un empleado");
+        mni_Buscar_un_empleado.setEnabled(false);
+        mni_Buscar_un_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Buscar_un_empleadoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Buscar_un_empleado);
+
+        mni_Modificar_Datos_de_un_empleado.setText("Modificar Datos de un empleado");
+        mni_Modificar_Datos_de_un_empleado.setEnabled(false);
+        mni_Modificar_Datos_de_un_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Modificar_Datos_de_un_empleadoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Modificar_Datos_de_un_empleado);
+
+        mni_Eliminar_un_empleado.setText("Eliminar un empleado");
+        mni_Eliminar_un_empleado.setEnabled(false);
+        mni_Eliminar_un_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Eliminar_un_empleadoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Eliminar_un_empleado);
+
+        mni_Agregar_un_producto.setText("Agregar un producto");
+        mni_Agregar_un_producto.setEnabled(false);
+        mni_Agregar_un_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Agregar_un_productoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Agregar_un_producto);
+
+        mni_Regresar_a_la_ventana_principal.setText("Regresar a la ventana principal");
+        mni_Regresar_a_la_ventana_principal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Regresar_a_la_ventana_principalActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar_a_la_ventana_principal);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,7 +297,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
                         .addComponent(btn_agregarProducto)))
                 .addGap(36, 36, 36)
                 .addComponent(btnRegresar)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,7 +324,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_agregarEmpleadoActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-      procesoRegresar();
+        procesoRegresar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
@@ -289,6 +375,34 @@ public class VentanaPersonal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoEmpleadosActionPerformed
 
+    private void mni_Agregar_un_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Agregar_un_empleadoActionPerformed
+        this.btn_agregarEmpleadoActionPerformed(evt);
+    }//GEN-LAST:event_mni_Agregar_un_empleadoActionPerformed
+
+    private void mni_Reporte_de_empleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Reporte_de_empleadosActionPerformed
+        this.btn_ReporteActionPerformed(evt);
+    }//GEN-LAST:event_mni_Reporte_de_empleadosActionPerformed
+
+    private void mni_Buscar_un_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Buscar_un_empleadoActionPerformed
+        this.btn_BuscarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Buscar_un_empleadoActionPerformed
+
+    private void mni_Modificar_Datos_de_un_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Modificar_Datos_de_un_empleadoActionPerformed
+        this.btn_ModificarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Modificar_Datos_de_un_empleadoActionPerformed
+
+    private void mni_Eliminar_un_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Eliminar_un_empleadoActionPerformed
+        this.btn_EliminarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Eliminar_un_empleadoActionPerformed
+
+    private void mni_Agregar_un_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Agregar_un_productoActionPerformed
+        this.btn_agregarProductoActionPerformed(evt);
+    }//GEN-LAST:event_mni_Agregar_un_productoActionPerformed
+
+    private void mni_Regresar_a_la_ventana_principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Regresar_a_la_ventana_principalActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Regresar_a_la_ventana_principalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -333,7 +447,16 @@ public class VentanaPersonal extends javax.swing.JFrame {
     private javax.swing.JButton btn_agregarEmpleado;
     private javax.swing.JButton btn_agregarProducto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblNoEmpleados;
+    private javax.swing.JMenuItem mni_Agregar_un_empleado;
+    private javax.swing.JMenuItem mni_Agregar_un_producto;
+    private javax.swing.JMenuItem mni_Buscar_un_empleado;
+    private javax.swing.JMenuItem mni_Eliminar_un_empleado;
+    private javax.swing.JMenuItem mni_Modificar_Datos_de_un_empleado;
+    private javax.swing.JMenuItem mni_Regresar_a_la_ventana_principal;
+    private javax.swing.JMenuItem mni_Reporte_de_empleados;
     private javax.swing.JTextField txtNoEmpleados;
     // End of variables declaration//GEN-END:variables
 }
