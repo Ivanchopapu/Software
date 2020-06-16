@@ -1,10 +1,8 @@
 package com.idesi.proyecto.recursos;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
+
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 public class VentanaRecursos extends javax.swing.JFrame {
 
@@ -293,19 +291,7 @@ public class VentanaRecursos extends javax.swing.JFrame {
         btn_Modificar.setEnabled(true);
         btn_Reporte.setEnabled(true);
     }
-    
-    class ImagenFondo extends JPanel{
-        private Image imagen;
-        
-        public void paint(Graphics g){
-           imagen = new ImageIcon(getClass().getResource("Fondo.jpg")).getImage();
-           g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
-           setOpaque(false);
-           super.paint(g);
-        }
-        
-    }
-    
+
     
     
 }

@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.idesi.proyecto.clientes;
 
 import javax.swing.table.TableModel;
-
+import com.idesi.proyecto.recursos.ImagenFondo;
 /**
  *
  * @author Cristofer
@@ -19,6 +15,7 @@ public class VentanaClientes extends javax.swing.JFrame {
     private VentanaEliminar vtnEliminar = null;
     private VentanaEstablecerCita vtnEstCita = null;
     private VentanaListaDeCitas vtnLisCita = null;
+    ImagenFondo ejemplo = new ImagenFondo();
     private Cliente[] clientes = new Cliente[5];
     private Cita[] citas = new Cita[5];
     private int posClientes = 0;
@@ -28,6 +25,7 @@ public class VentanaClientes extends javax.swing.JFrame {
      * Creates new form VentanaClientes
      */
     public VentanaClientes() {
+        this.setContentPane(ejemplo);
         initComponents();
     }
 

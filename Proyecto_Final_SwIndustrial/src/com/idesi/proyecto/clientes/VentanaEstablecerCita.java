@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.idesi.proyecto.clientes;
 
 import java.time.Month;
 import java.time.YearMonth;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
-
+import com.idesi.proyecto.recursos.ImagenFondo;
 /**
  *
  * @author Cristofer
@@ -18,6 +14,7 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
     
     private VentanaClientes vtnClientes;
     private Cita[] citas;
+    ImagenFondo ejemplo = new ImagenFondo();
     protected int posCitas;
 
     /**
@@ -30,6 +27,7 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
     public VentanaEstablecerCita(VentanaClientes vtnClientes, Cita[] citas) {
         this.vtnClientes = vtnClientes;
         this.citas = citas;
+        this.setContentPane(ejemplo);
         initComponents();
     }
     

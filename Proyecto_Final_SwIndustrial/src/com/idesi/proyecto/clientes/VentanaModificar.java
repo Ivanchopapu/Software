@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.idesi.proyecto.clientes;
 
+import com.idesi.proyecto.recursos.ImagenFondo;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +12,7 @@ public class VentanaModificar extends javax.swing.JFrame {
 
     private VentanaClientes vtnClientes;
     private Cliente[] clientes;
+    ImagenFondo ejemplo = new ImagenFondo();
     private int posBusqueda = 5;
     private int posModificar = 0;
     protected int posClientes;
@@ -29,6 +27,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     public VentanaModificar(VentanaClientes vtnClientes, Cliente[] clientes) {
         this.vtnClientes = vtnClientes;
         this.clientes = clientes;
+        this.setContentPane(ejemplo);
         initComponents();
     }
 
