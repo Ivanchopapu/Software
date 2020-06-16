@@ -26,13 +26,13 @@ public class VentanaClientes extends javax.swing.JFrame {
     /**
      * Creates new form VentanaClientes
      */
-    public VentanaClientes() {
-        this.setContentPane(ejemplo);
+    public VentanaClientes() {     
         initComponents();
     }
 
     public VentanaClientes(VentanaPrincipal vtnPrincipal) {
         this.vtnPrincipal = vtnPrincipal;
+        this.setContentPane(ejemplo);
         initComponents();
     }
 

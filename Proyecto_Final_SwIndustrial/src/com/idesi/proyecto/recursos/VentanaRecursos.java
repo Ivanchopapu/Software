@@ -25,13 +25,13 @@ public class VentanaRecursos extends javax.swing.JFrame {
     int Tamaño;
 
     public VentanaRecursos() {
-        this.setContentPane(ejemplo);
         initComponents();
     }
 
     public VentanaRecursos(VentanaPrincipal vtnPrincipal, Producto[] productos) {
         this.vtnPrincipal = vtnPrincipal;
         this.Obj_Producto = productos;
+        this.setContentPane(ejemplo);
         initComponents();
 
     }
