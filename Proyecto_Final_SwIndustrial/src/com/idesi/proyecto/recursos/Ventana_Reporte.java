@@ -58,6 +58,11 @@ public class Ventana_Reporte extends javax.swing.JFrame {
         lbl_Producto = new javax.swing.JLabel();
         txt_Producto = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Anterior = new javax.swing.JMenuItem();
+        mni_Siguiente = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +122,36 @@ public class Ventana_Reporte extends javax.swing.JFrame {
         txt_Producto.setEditable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/recursos/imagenes/Inventario_Grande.jpg"))); // NOI18N
+
+        jMenu1.setText("Archivo");
+
+        mni_Anterior.setText("Anterior");
+        mni_Anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_AnteriorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Anterior);
+
+        mni_Siguiente.setText("Siguiente");
+        mni_Siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_SiguienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Siguiente);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,7 +232,7 @@ public class Ventana_Reporte extends javax.swing.JFrame {
                             .addComponent(txt_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(17, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,6 +277,18 @@ public class Ventana_Reporte extends javax.swing.JFrame {
         Actualizar(posicion);
     }//GEN-LAST:event_btn_SiguienteActionPerformed
 
+    private void mni_AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_AnteriorActionPerformed
+        this.btn_AnteriorActionPerformed(evt);
+    }//GEN-LAST:event_mni_AnteriorActionPerformed
+
+    private void mni_SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_SiguienteActionPerformed
+        this.btn_SiguienteActionPerformed(evt);
+    }//GEN-LAST:event_mni_SiguienteActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btn_RegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -283,12 +330,17 @@ public class Ventana_Reporte extends javax.swing.JFrame {
     private javax.swing.JButton btn_Regresar;
     private javax.swing.JButton btn_Siguiente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lbl_Código;
     private javax.swing.JLabel lbl_Existencia;
     private javax.swing.JLabel lbl_Nombre;
     private javax.swing.JLabel lbl_Precio;
     private javax.swing.JLabel lbl_Producto;
     private javax.swing.JLabel lbl_Tipo;
+    private javax.swing.JMenuItem mni_Anterior;
+    private javax.swing.JMenuItem mni_Regresar;
+    private javax.swing.JMenuItem mni_Siguiente;
     private javax.swing.JTextField txt_Codigo;
     private javax.swing.JTextField txt_Existencia;
     private javax.swing.JTextField txt_Nombre;
@@ -313,7 +365,5 @@ public class Ventana_Reporte extends javax.swing.JFrame {
         txt_Tipo.setText(Obj_Producto[posicion].getTipoProducto());
 
         txt_Producto.setText((posicion + 1) + " / " + Obj_VentanaRecursos.getTamaño());
-
     }
-
 }

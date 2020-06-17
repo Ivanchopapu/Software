@@ -56,6 +56,13 @@ public class VentanaRecursos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Dar_de_Alta_Producto = new javax.swing.JMenuItem();
+        mni_Buscar_un_Producto = new javax.swing.JMenuItem();
+        mni_Reporte_de_Producto = new javax.swing.JMenuItem();
+        mni_Modificar_Precio_de_un_Producto = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +112,55 @@ public class VentanaRecursos extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/recursos/imagenes/Lupita.jpg"))); // NOI18N
 
+        jMenu1.setText("Archivo");
+
+        mni_Dar_de_Alta_Producto.setText("Dar de Alta Producto");
+        mni_Dar_de_Alta_Producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Dar_de_Alta_ProductoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Dar_de_Alta_Producto);
+
+        mni_Buscar_un_Producto.setText("Buscar un Producto");
+        mni_Buscar_un_Producto.setEnabled(false);
+        mni_Buscar_un_Producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Buscar_un_ProductoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Buscar_un_Producto);
+
+        mni_Reporte_de_Producto.setText("Reporte de Producto");
+        mni_Reporte_de_Producto.setEnabled(false);
+        mni_Reporte_de_Producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Reporte_de_ProductoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Reporte_de_Producto);
+
+        mni_Modificar_Precio_de_un_Producto.setText("Modificar Precio de un Producto");
+        mni_Modificar_Precio_de_un_Producto.setEnabled(false);
+        mni_Modificar_Precio_de_un_Producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_Modificar_Precio_de_un_ProductoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Modificar_Precio_de_un_Producto);
+
+        mni_Regresar.setText("Regresar a la ventana Principal");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,7 +203,7 @@ public class VentanaRecursos extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
@@ -262,6 +318,26 @@ public class VentanaRecursos extends javax.swing.JFrame {
         procesoRegresar();
     }//GEN-LAST:event_btn_RegresarActionPerformed
 
+    private void mni_Dar_de_Alta_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Dar_de_Alta_ProductoActionPerformed
+        this.btn_AltaActionPerformed(evt);
+    }//GEN-LAST:event_mni_Dar_de_Alta_ProductoActionPerformed
+
+    private void mni_Buscar_un_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Buscar_un_ProductoActionPerformed
+        this.btn_Buscar_ProductoActionPerformed(evt);
+    }//GEN-LAST:event_mni_Buscar_un_ProductoActionPerformed
+
+    private void mni_Reporte_de_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Reporte_de_ProductoActionPerformed
+        this.btn_ReporteActionPerformed(evt);
+    }//GEN-LAST:event_mni_Reporte_de_ProductoActionPerformed
+
+    private void mni_Modificar_Precio_de_un_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Modificar_Precio_de_un_ProductoActionPerformed
+        this.btn_ModificarActionPerformed(evt);
+    }//GEN-LAST:event_mni_Modificar_Precio_de_un_ProductoActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btn_RegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -305,6 +381,13 @@ public class VentanaRecursos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem mni_Buscar_un_Producto;
+    private javax.swing.JMenuItem mni_Dar_de_Alta_Producto;
+    private javax.swing.JMenuItem mni_Modificar_Precio_de_un_Producto;
+    private javax.swing.JMenuItem mni_Regresar;
+    private javax.swing.JMenuItem mni_Reporte_de_Producto;
     // End of variables declaration//GEN-END:variables
 
     public void Enable_Faltantes() {
@@ -312,7 +395,9 @@ public class VentanaRecursos extends javax.swing.JFrame {
             btn_Buscar_Producto.setEnabled(true);
             btn_Modificar.setEnabled(true);
             btn_Reporte.setEnabled(true);
+            mni_Buscar_un_Producto.setEnabled(true);
+            mni_Reporte_de_Producto.setEnabled(true);
+            mni_Modificar_Precio_de_un_Producto.setEnabled(true);      
         }
     }
-
 }

@@ -9,7 +9,6 @@ import com.idesi.proyecto.clientes.*;
 import javax.swing.JOptionPane;
 import com.idesi.proyecto.recursos.ImagenFondo;
 
-
 /**
  *
  * @author Cristofer
@@ -69,27 +68,26 @@ public class VentanaAgregar extends javax.swing.JFrame {
         empleados[posEmp].setEdad(Integer.parseInt(txtEdad.getText().trim()));
         empleados[posEmp].setTipoEmpleado(cmbTipo.getSelectedItem().toString());
         empleados[posEmp].setRFC(txtRFC.getText().trim());
-        
+
         posEmp++;
         mostrarAviso(1);
         limpiarCampos();
-        
+
     }
-    
-    private void procesoRegresar(){
+
+    private void procesoRegresar() {
         limpiarCampos();
         vtnPersonal.setVisible(true);
         this.setVisible(false);
-        
+
     }
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         txtCodigo.setText("");
         txtNombre.setText("");
         txtEdad.setText("");
         txtRFC.setText("");
     }
-    
 
     private void mostrarAviso(int aviso) {
         switch (aviso) {
@@ -102,7 +100,7 @@ public class VentanaAgregar extends javax.swing.JFrame {
                         this,
                         "Favor de no dejar ningun campo en blanco, revise lo introducido.");
                 break;
-            case 3: 
+            case 3:
                 JOptionPane.showMessageDialog(
                         this,
                         "Favor de solo introducir números enteros en el campo de edad.");
@@ -138,6 +136,12 @@ public class VentanaAgregar extends javax.swing.JFrame {
         lblRFC = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Guardar = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mni_Borrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,6 +175,40 @@ public class VentanaAgregar extends javax.swing.JFrame {
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrativo", "Laboratorista"}));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/personal/Imagenes/Personal.jpg"))); // NOI18N
+
+        jMenu1.setText("Archivo");
+
+        mni_Guardar.setText("Guardar");
+        mni_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_GuardarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Guardar);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edicion");
+
+        mni_Borrar.setText("Borrar");
+        mni_Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BorrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mni_Borrar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,6 +304,21 @@ public class VentanaAgregar extends javax.swing.JFrame {
         procesoRegresar();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void mni_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_GuardarActionPerformed
+        this.btnGuardarActionPerformed(evt);
+    }//GEN-LAST:event_mni_GuardarActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
+    private void mni_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BorrarActionPerformed
+        txtCodigo.setText("");
+        txtEdad.setText("");
+        txtNombre.setText("");
+        txtRFC.setText("");
+    }//GEN-LAST:event_mni_BorrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -307,12 +360,18 @@ public class VentanaAgregar extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblDomicilio;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRFC;
     private javax.swing.JLabel lblRegistro;
+    private javax.swing.JMenuItem mni_Borrar;
+    private javax.swing.JMenuItem mni_Guardar;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;

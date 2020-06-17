@@ -1,10 +1,9 @@
-
 package com.idesi.proyecto.recursos;
 
 import javax.swing.JOptionPane;
 
 public class Ventana_Mostrar extends javax.swing.JFrame {
-    
+
     //Interfaz entre ventanas
     VentanaRecursos Obj_VentanaRecursos = null;
     Producto[] Obj_Producto = null;
@@ -23,7 +22,6 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,6 +40,10 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
         txt_Cantidad = new javax.swing.JTextField();
         txt_Precio = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Regresar = new javax.swing.JMenuItem();
+        mni_Aceptar = new javax.swing.JMenuItem();
 
         jLabel1.setText("jLabel1");
 
@@ -88,6 +90,28 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/recursos/imagenes/Esculapio.jpg"))); // NOI18N
 
+        jMenu1.setText("File");
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        mni_Aceptar.setText("Aceptar");
+        mni_Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_AceptarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Aceptar);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,34 +121,29 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                                 .addComponent(lbl_Precio)
                                 .addGap(36, 36, 36)
                                 .addComponent(txt_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbl_Codigo)
-                                            .addComponent(lbl_Nombre))
-                                        .addGap(40, 40, 40)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txt_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                            .addComponent(txt_Codigo)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(196, 196, 196)
-                                            .addComponent(txt_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lbl_Tipo)
-                                            .addGap(174, 174, 174)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lbl_Cantidad)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(txt_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(lbl_Codigo)
+                                    .addComponent(lbl_Nombre))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                    .addComponent(txt_Codigo)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(196, 196, 196)
+                                    .addComponent(txt_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lbl_Tipo))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lbl_Cantidad)
+                                .addGap(39, 39, 39)
+                                .addComponent(txt_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(47, 47, 47))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
@@ -165,7 +184,7 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel2)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -178,15 +197,23 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
     private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
         this.setVisible(false);
         Obj_VentanaRecursos.setVisible(true);
-       
+
     }//GEN-LAST:event_btn_RegresarActionPerformed
 
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AceptarActionPerformed
-       
+
         int Precio = Integer.parseInt(txt_Precio.getText());
         Obj_Producto[posicion].setPrecio(Precio);
-       JOptionPane.showMessageDialog(this, "El nuevo precio del producto se ha actualizado");
+        JOptionPane.showMessageDialog(this, "El nuevo precio del producto se ha actualizado");
     }//GEN-LAST:event_btn_AceptarActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btn_RegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
+
+    private void mni_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_AceptarActionPerformed
+        this.btn_AceptarActionPerformed(evt);
+    }//GEN-LAST:event_mni_AceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,11 +256,15 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
     private javax.swing.JButton btn_Regresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lbl_Cantidad;
     private javax.swing.JLabel lbl_Codigo;
     private javax.swing.JLabel lbl_Nombre;
     private javax.swing.JLabel lbl_Precio;
     private javax.swing.JLabel lbl_Tipo;
+    private javax.swing.JMenuItem mni_Aceptar;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTextField txt_Cantidad;
     private javax.swing.JTextField txt_Codigo;
     private javax.swing.JTextField txt_Nombre;
@@ -242,12 +273,13 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     void Modo_Buscar(String respuerta, int posicion) {
+        mni_Aceptar.setVisible(false);
         btn_Aceptar.setVisible(false);
         this.posicion = posicion;
         String Existencia = String.valueOf(Obj_Producto[posicion].getExistencia());
         String Codigo = String.valueOf(Obj_Producto[posicion].getCodigo());
         String Precio = String.valueOf(Obj_Producto[posicion].getPrecio());
-        
+
         txt_Cantidad.setText(Existencia);
         txt_Codigo.setText(Codigo);
         txt_Nombre.setText(Obj_Producto[posicion].getNombreProducto());
@@ -258,21 +290,21 @@ public class Ventana_Mostrar extends javax.swing.JFrame {
     void Modo_Modificar(int Codigo, int posicion) {
         this.posicion = posicion;
         btn_Aceptar.setVisible(true);
-         txt_Precio.setEditable(true);
+        mni_Aceptar.setVisible(true);
+        txt_Precio.setEditable(true);
         Mostrar_Datos(posicion);
     }
-    public void Mostrar_Datos(int posicion){
+
+    public void Mostrar_Datos(int posicion) {
         this.posicion = posicion;
         String Existencia = String.valueOf(Obj_Producto[posicion].getExistencia());
         String Codigo = String.valueOf(Obj_Producto[posicion].getCodigo());
         String Precio = String.valueOf(Obj_Producto[posicion].getPrecio());
-        
+
         txt_Cantidad.setText(Existencia);
         txt_Codigo.setText(Codigo);
         txt_Nombre.setText(Obj_Producto[posicion].getNombreProducto());
         txt_Precio.setText(Precio);
         txt_Tipo.setText(Obj_Producto[posicion].getTipoProducto());
-       
-        
     }
 }

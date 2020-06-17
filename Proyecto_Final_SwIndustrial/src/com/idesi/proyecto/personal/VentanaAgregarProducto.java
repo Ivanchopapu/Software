@@ -104,6 +104,7 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
             txtExistencia.setEnabled(true);
             txtPrecio.setEnabled(true);
             btnGuardar.setEnabled(true);
+            mni_Guardar.setEnabled(true);
         } else {
             mostrarAviso(6);
         }
@@ -131,6 +132,7 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
         txtExistencia.setEnabled(false);
         txtPrecio.setEnabled(false);
         btnGuardar.setEnabled(false);
+        mni_Guardar.setEnabled(false);   
     }
 
     private void procesoRegresar() {
@@ -210,6 +212,13 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
         lblCodigo = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Validar = new javax.swing.JMenuItem();
+        mni_Guardar = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mni_Borrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -268,6 +277,49 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/personal/Imagenes/Agregar_Producto.jpg"))); // NOI18N
 
+        jMenu1.setText("Archivo");
+
+        mni_Validar.setText("Validar");
+        mni_Validar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_ValidarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Validar);
+
+        mni_Guardar.setText("Guardar");
+        mni_Guardar.setEnabled(false);
+        mni_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_GuardarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Guardar);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edicion");
+
+        mni_Borrar.setText("Borrar");
+        mni_Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BorrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mni_Borrar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -314,7 +366,7 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(90, 90, 90))))
         );
@@ -357,7 +409,7 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardar)
                     .addComponent(btnRegresar))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -384,6 +436,26 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void mni_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BorrarActionPerformed
+        txtCodigo.setText("");
+        txtCodigoEmp.setText("");
+        txtExistencia.setText("");
+        txtNombre.setText("");
+        txtPrecio.setText("");
+    }//GEN-LAST:event_mni_BorrarActionPerformed
+
+    private void mni_ValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_ValidarActionPerformed
+        this.btnValidarActionPerformed(evt);
+    }//GEN-LAST:event_mni_ValidarActionPerformed
+
+    private void mni_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_GuardarActionPerformed
+        this.btnGuardarActionPerformed(evt);
+    }//GEN-LAST:event_mni_GuardarActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btnRegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,6 +505,9 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
     private javax.swing.JButton btnValidar;
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCodigoEmp;
@@ -441,6 +516,10 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JLabel lblTipo;
+    private javax.swing.JMenuItem mni_Borrar;
+    private javax.swing.JMenuItem mni_Guardar;
+    private javax.swing.JMenuItem mni_Regresar;
+    private javax.swing.JMenuItem mni_Validar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoEmp;
     private javax.swing.JTextField txtExistencia;

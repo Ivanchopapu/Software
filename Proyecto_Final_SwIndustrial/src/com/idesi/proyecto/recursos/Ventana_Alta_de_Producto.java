@@ -3,32 +3,32 @@ package com.idesi.proyecto.recursos;
 import javax.swing.JOptionPane;
 
 public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
-    
+
     VentanaRecursos Obj_VentanaRecursos = null;
     Producto[] Obj_Producto;
     ImagenFondo ejemplo = new ImagenFondo();
 
     boolean Auxiliar = true;
-    
+
     public boolean isAuxiliar() {
         return Auxiliar;
     }
-    
+
     public void setAuxiliar(boolean Auxiliar) {
         this.Auxiliar = Auxiliar;
     }
-    
+
     public Ventana_Alta_de_Producto() {
         initComponents();
     }
-    
+
     Ventana_Alta_de_Producto(VentanaRecursos Obj_VentanaRecursos, Producto[] Obj_Producto) {
         this.Obj_VentanaRecursos = Obj_VentanaRecursos;
         this.Obj_Producto = Obj_Producto;
         this.setContentPane(ejemplo);
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -46,6 +46,12 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
         box_Tipo = new javax.swing.JComboBox<>();
         btn_Regresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mni_Aceptar = new javax.swing.JMenuItem();
+        mni_Regresar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mni_Borrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +88,40 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/idesi/proyecto/recursos/imagenes/Nuevo_Archivo.jpg"))); // NOI18N
+
+        jMenu1.setText("Archivo");
+
+        mni_Aceptar.setText("Aceptar");
+        mni_Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_AceptarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Aceptar);
+
+        mni_Regresar.setText("Regresar");
+        mni_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_RegresarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mni_Regresar);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edicion");
+
+        mni_Borrar.setText("Borrar");
+        mni_Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni_BorrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mni_Borrar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,7 +193,7 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_Precio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Aceptar)
                     .addComponent(btn_Regresar))
@@ -168,7 +208,7 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_PrecioActionPerformed
 
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AceptarActionPerformed
-        
+
         int posicion = 0;
 
         // Interfas
@@ -193,16 +233,15 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
             int Codigo = Integer.parseInt(txt_Codigo.getText());
             int Existencia = Integer.parseInt(txt_Cantidad.getText());
             int Precio = Integer.parseInt(txt_Precio.getText());
-            
+
             Obj_Producto[posicion].setCodigo(Codigo);
             Obj_Producto[posicion].setExistencia(Existencia);
             Obj_Producto[posicion].setPrecio(Precio);
             Obj_Producto[posicion].setNombreProducto(txt_Nombre.getText());
             Obj_Producto[posicion].setTipoProducto(box_Tipo.getSelectedItem().toString());
-            
-            
+
         } catch (Exception e) {
-            
+
             this.setAuxiliar(false);
             Obj_Producto[posicion].setCodigo(0);
             Obj_Producto[posicion].setExistencia(0);
@@ -211,7 +250,7 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
             Obj_Producto[posicion].setTipoProducto("");
             limpiar();
             JOptionPane.showMessageDialog(this, "Algún dato no está bien escrito");
-            
+
         } finally {
             if (this.isAuxiliar() == true) {
                 JOptionPane.showMessageDialog(this, "El registro se guardó ");
@@ -224,8 +263,23 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
     private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
         this.setVisible(false);
         Obj_VentanaRecursos.setVisible(true);
-        
+
     }//GEN-LAST:event_btn_RegresarActionPerformed
+
+    private void mni_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_BorrarActionPerformed
+        txt_Cantidad.setText("");
+        txt_Codigo.setText("");
+        txt_Nombre.setText("");
+        txt_Precio.setText("");
+    }//GEN-LAST:event_mni_BorrarActionPerformed
+
+    private void mni_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_AceptarActionPerformed
+        this.btn_AceptarActionPerformed(evt);
+    }//GEN-LAST:event_mni_AceptarActionPerformed
+
+    private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed
+        this.btn_RegresarActionPerformed(evt);
+    }//GEN-LAST:event_mni_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,21 +295,21 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Ventana_Alta_de_Producto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Ventana_Alta_de_Producto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Ventana_Alta_de_Producto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Ventana_Alta_de_Producto.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -283,11 +337,17 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
     private javax.swing.JButton btn_Aceptar;
     private javax.swing.JButton btn_Regresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lbl_Cantidad;
     private javax.swing.JLabel lbl_Codigo;
     private javax.swing.JLabel lbl_Nombre;
     private javax.swing.JLabel lbl_Precio;
     private javax.swing.JLabel lbl_Tipo;
+    private javax.swing.JMenuItem mni_Aceptar;
+    private javax.swing.JMenuItem mni_Borrar;
+    private javax.swing.JMenuItem mni_Regresar;
     private javax.swing.JTextField txt_Cantidad;
     private javax.swing.JTextField txt_Codigo;
     private javax.swing.JTextField txt_Nombre;
