@@ -40,6 +40,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
             return true;
         } else {
             mostrarAviso(1);
+            limpiarCamposBusquedaNoEncontrada();
             return false;
         }
     }
@@ -49,7 +50,6 @@ public class VentanaBuscar extends javax.swing.JFrame {
         for (int i = 0; i < posEmp; i++) {
             if (buscado.equals(empleados[i].getCodigoEmpleado())) {
                 posBusqueda = i;
-
             }
         }
 

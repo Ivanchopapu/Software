@@ -34,6 +34,8 @@ public class VentanaModificar extends javax.swing.JFrame {
         if (!(txtBuscado.getText().equals(""))) {
             return true;
         } else {
+            btnGuardar.setEnabled(false);
+            mn_Guardar_Cambios.setEnabled(false);
             mostrarAviso(2);
             return false;
         }
@@ -52,6 +54,7 @@ public class VentanaModificar extends javax.swing.JFrame {
             posModificar = posBusqueda;
             posBusqueda = 5;
             btnGuardar.setEnabled(true);
+            mn_Guardar_Cambios.setEnabled(true);
             mn_Buscar.setEnabled(true);
             txtCodigo.setEnabled(true);
             txtNombre.setEnabled(true);
@@ -61,6 +64,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         } else {
             mostrarAviso(3);
             btnGuardar.setEnabled(false);
+            mn_Guardar_Cambios.setEnabled(false);
             limpiarCamposBusquedaNoEncontrada();
         }
 
@@ -79,6 +83,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         clientes[posModificar].setEdad(Integer.parseInt(txtEdad.getText()));
         clientes[posModificar].setDomicilio(txtDomicilio.getText());
         btnGuardar.setEnabled(false);
+        mn_Guardar_Cambios.setEnabled(false);
         txtCodigo.setEnabled(false);
         txtNombre.setEnabled(false);
         txtEdad.setEnabled(false);
@@ -108,6 +113,8 @@ public class VentanaModificar extends javax.swing.JFrame {
 
     private void procesoRegresar() {
         limpiarCampos();
+        btnGuardar.setEnabled(false);
+        mn_Guardar_Cambios.setEnabled(false);
         vtnClientes.setVisible(true);
         this.setVisible(false);
 

@@ -66,6 +66,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mn_Salir_del_Sistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         btn_Control.setText("Control de Personal");
         btn_Control.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +209,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             vtnRecursos = new VentanaRecursos(this, productos);
         }
         
+        vtnRecursos.Tamaño = this.posProducto;
+        vtnRecursos.Enable_Faltantes();
         vtnRecursos.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_RecursosActionPerformed

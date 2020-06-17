@@ -13,9 +13,12 @@ import com.idesi.proyecto.recursos.ImagenFondo;
 public class VentanaEstablecerCita extends javax.swing.JFrame {
     
     private VentanaClientes vtnClientes;
+    private Cliente[] clientes;
     private Cita[] citas;
     ImagenFondo ejemplo = new ImagenFondo();
     protected int posCitas;
+    protected int posCliente;
+    private int posBusqueda = 5;
 
     /**
      * Creates new form VentanaAgregar
@@ -24,8 +27,9 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
         initComponents();
     }
     
-    public VentanaEstablecerCita(VentanaClientes vtnClientes, Cita[] citas) {
+    public VentanaEstablecerCita(VentanaClientes vtnClientes, Cliente[] clientes,Cita[] citas) {
         this.vtnClientes = vtnClientes;
+        this.clientes = clientes;
         this.citas = citas;
         this.setContentPane(ejemplo);
         initComponents();
@@ -34,6 +38,7 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
     private boolean revisarAlmacenamiento() {
         if (posCitas == 5) {
             mostrarAviso(3);
+            bloquearTodo();
             return false;
         } else {
             return true;
@@ -44,8 +49,32 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
         if (!(txtCodigo.getText().equals(""))) {
             return true;
         } else {
+            bloquearTodo();
+            limpiarCampos();
             mostrarAviso(2);
             return false;
+        }
+    }
+   
+    private void procesoValidarCodigo(){
+        String buscado = txtCodigo.getText();
+        for (int i = 0; i < posCliente; i++) {
+            if (buscado.equals(clientes[i].getCódigo_de_cliente())) {
+                posBusqueda = i;
+            }
+        }
+        
+        if(posBusqueda < 5){
+            cmbTipoExamen.setEnabled(true);
+            cmbDia.setEnabled(true);
+            cmbMes.setEnabled(true);
+            cmbHora.setEnabled(true);
+            btnGuardar.setEnabled(true);
+            mni_Guardar.setEnabled(true);
+            posBusqueda = 5;
+        }else{
+            mostrarAviso(4);
+            bloquearTodo();
         }
     }
     
@@ -65,12 +94,13 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
         mostrarAviso(1);
         posCitas++;
         vtnClientes.aplicarCambiosCitas(this.posCitas);
-        
+        bloquearTodo();
         limpiarCampos();
     }
     
     private void procesoRegresar() {
         limpiarCampos();
+        bloquearTodo();
         vtnClientes.setVisible(true);
         this.setVisible(false);
     }
@@ -81,6 +111,16 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
         cmbMes.setSelectedIndex(0);
         cmbHora.setSelectedIndex(0);
         cmbTipoExamen.setSelectedIndex(0);
+    }
+    
+    private void bloquearTodo(){
+            cmbTipoExamen.setEnabled(false);
+            cmbDia.setEnabled(false);
+            cmbMes.setEnabled(false);
+            cmbHora.setEnabled(false);
+            btnGuardar.setEnabled(false);
+            mni_Guardar.setEnabled(false);
+            
     }
     
     private void mostrarAviso(int aviso) {
@@ -102,6 +142,11 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(
                         this,
                         "Almacenamiento completo, no se pueden guardar más.");
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(
+                        this,
+                        "El codigo no coincide con ningun cliente registrado");
                 break;
         }
     }
@@ -156,13 +201,16 @@ public class VentanaEstablecerCita extends javax.swing.JFrame {
         lblTipo.setText("Tipo de examen:");
 
         cmbTipoExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sangre", "Nivel de Azucar", "Orina" }));
+        cmbTipoExamen.setEnabled(false);
 
         lblFecha.setText("Fecha (DD/MM):");
 
         cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"
             , "25", "26", "27", "28", "29", "30", "31", }));
+cmbDia.setEnabled(false);
 
 cmbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+cmbMes.setEnabled(false);
 cmbMes.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
         cmbMesActionPerformed(evt);
@@ -179,6 +227,7 @@ cmbMes.addActionListener(new java.awt.event.ActionListener() {
     cmbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", }));
 
     btnGuardar.setText("Guardar");
+    btnGuardar.setEnabled(false);
     btnGuardar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnGuardarActionPerformed(evt);
@@ -241,56 +290,57 @@ cmbMes.addActionListener(new java.awt.event.ActionListener() {
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
-            .addGap(54, 54, 54)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
+                    .addGap(54, 54, 54)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblCodigo)
-                                .addComponent(lblTipo))
-                            .addGap(31, 31, 31)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cmbTipoExamen, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblFecha)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(cmbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cmbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblCodigo)
+                                        .addComponent(lblTipo))
+                                    .addGap(31, 31, 31)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cmbTipoExamen, javax.swing.GroupLayout.Alignment.LEADING, 0, 225, Short.MAX_VALUE)
+                                        .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel1))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblFecha)
-                            .addGap(31, 31, 31)
-                            .addComponent(cmbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cmbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(40, 40, 40)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnBuscar)
-                        .addComponent(jLabel1)))
+                            .addGap(118, 118, 118)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(118, 118, 118)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(26, Short.MAX_VALUE))
+                    .addGap(229, 229, 229)
+                    .addComponent(lblRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(15, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addGap(16, 16, 16)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblRegistro)
-                .addComponent(btnBuscar))
+            .addComponent(lblRegistro)
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblCodigo)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(16, 16, 16)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar))
+                    .addGap(12, 12, 12)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblTipo)
                         .addComponent(cmbTipoExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,9 +364,7 @@ cmbMes.addActionListener(new java.awt.event.ActionListener() {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (revisarAlmacenamiento()) {
-            if (revisarEntrada()) {
                 procesoGuardar();
-            }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -347,15 +395,17 @@ cmbMes.addActionListener(new java.awt.event.ActionListener() {
     }//GEN-LAST:event_cmbMesActionPerformed
 
     private void mni_Buscar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_Buscar_ClienteActionPerformed
-        
+        this.btnBuscarActionPerformed(evt);
     }//GEN-LAST:event_mni_Buscar_ClienteActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        if(revisarEntrada()){
+            procesoValidarCodigo();
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void mni_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_GuardarActionPerformed
-        this.btnBuscarActionPerformed(evt);
+        this.btnGuardarActionPerformed(evt);
     }//GEN-LAST:event_mni_GuardarActionPerformed
 
     private void mni_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_RegresarActionPerformed

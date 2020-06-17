@@ -34,6 +34,7 @@ public class VentanaBuscar extends javax.swing.JFrame {
             return true;
         } else {
             mostrarAviso(1);
+            limpiarCamposBusquedaNoEncontrada();
             return false;
         }
     }

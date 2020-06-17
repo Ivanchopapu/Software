@@ -49,14 +49,18 @@ public class VentanaClientes extends javax.swing.JFrame {
             btnBuscar.setEnabled(false);
             btnModificar.setEnabled(false);
             btnEliminar.setEnabled(false);
+            btnCrearCita.setEnabled(false);
             mni_Buscar_cliente.setEnabled(false);
             mni_Modificar_datos_de_un_cliente.setEnabled(false);
             mni_Eliminar_un_cliente.setEnabled(false);
+            mni_Establecer_una_cita.setEnabled(false);
         }else{
             btnBuscar.setEnabled(true);
             btnModificar.setEnabled(true);
             btnEliminar.setEnabled(true);
+            btnCrearCita.setEnabled(true);
             mni_Buscar_cliente.setEnabled(true);
+            mni_Modificar_datos_de_un_cliente.setEnabled(true);
             mni_Modificar_datos_de_un_cliente.setEnabled(true);
             mni_Eliminar_un_cliente.setEnabled(true);
         }
@@ -157,6 +161,7 @@ public class VentanaClientes extends javax.swing.JFrame {
         });
 
         btnCrearCita.setText("Establecer una cita");
+        btnCrearCita.setEnabled(false);
         btnCrearCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearCitaActionPerformed(evt);
@@ -364,9 +369,10 @@ public class VentanaClientes extends javax.swing.JFrame {
 
     private void btnCrearCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCitaActionPerformed
         if (vtnEstCita == null) {
-            vtnEstCita = new VentanaEstablecerCita(this, citas);
+            vtnEstCita = new VentanaEstablecerCita(this, clientes ,citas);
         }
 
+        vtnEstCita.posCliente = this.posClientes;
         vtnEstCita.posCitas = this.posCitas;
         vtnEstCita.setVisible(true);
         this.setVisible(false);

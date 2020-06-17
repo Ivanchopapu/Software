@@ -92,6 +92,8 @@ public class VentanaReporte extends javax.swing.JFrame {
 
         lblTipo.setText("Tipo de Empleado:");
 
+        txtCodigo.setEditable(false);
+
         txtTipo.setEditable(false);
 
         lblSalario.setText("Salario:");

@@ -35,6 +35,9 @@ public class VentanaEliminar extends javax.swing.JFrame {
             return true;
         } else {
             mostrarAviso(2);
+            limpiarCamposBusquedaNoEncontrada();
+            btnEliminar.setEnabled(false);
+            mni_Eliminar.setEnabled(false);
             return false;
         }
     }
@@ -61,6 +64,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
         } else {
             mostrarAviso(3);
             btnEliminar.setEnabled(false);
+            mni_Eliminar.setEnabled(false);
             limpiarCamposBusquedaNoEncontrada();
         }
 
@@ -82,6 +86,7 @@ public class VentanaEliminar extends javax.swing.JFrame {
         posClientes--;
         vtnClientes.aplicarCambiosClientes(posClientes);
         btnEliminar.setEnabled(false);
+        mni_Eliminar.setEnabled(false);
         txtCodigo.setEnabled(false);
         txtNombre.setEnabled(false);
         txtEdad.setEnabled(false);
@@ -93,6 +98,8 @@ public class VentanaEliminar extends javax.swing.JFrame {
 
     private void procesoRegresar() {
         limpiarCampos();
+        btnEliminar.setEnabled(false);
+        mni_Eliminar.setEnabled(false);
         vtnClientes.setVisible(true);
         this.setVisible(false);
 

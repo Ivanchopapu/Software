@@ -5,7 +5,6 @@
  */
 package com.idesi.proyecto.personal;
 
-import com.idesi.proyecto.clientes.*;
 import javax.swing.JOptionPane;
 import com.idesi.proyecto.recursos.ImagenFondo;
 
@@ -41,6 +40,8 @@ public class VentanaModificar extends javax.swing.JFrame {
             return true;
         } else {
             mostrarAviso(2);
+            limpiarCamposBusquedaNoEncontrada();
+            bloquearTodo();
             return false;
         }
     }
@@ -67,9 +68,8 @@ public class VentanaModificar extends javax.swing.JFrame {
 
         } else {
             mostrarAviso(3);
-            btnGuardar.setEnabled(false);
-            mni_Guardar_Cambios.setEnabled(false);
             limpiarCamposBusquedaNoEncontrada();
+            bloquearTodo();
         }
 
     }
@@ -91,12 +91,7 @@ public class VentanaModificar extends javax.swing.JFrame {
         empleados[posModificar].setEdad(Integer.parseInt(txtEdad.getText()));
         empleados[posModificar].setRFC(txtRFC.getText());
         empleados[posModificar].setTipoEmpleado(cmbTipo.getSelectedItem().toString());
-        btnGuardar.setEnabled(false);
-        txtCodigo.setEnabled(false);
-        txtNombre.setEnabled(false);
-        txtEdad.setEnabled(false);
-        txtRFC.setEnabled(false);
-        cmbTipo.setEnabled(false);
+        bloquearTodo();
         limpiarCampos();
         mostrarAviso(1);
 
@@ -121,6 +116,7 @@ public class VentanaModificar extends javax.swing.JFrame {
 
     private void procesoRegresar() {
         limpiarCampos();
+        bloquearTodo();
         vtnPersonal.setVisible(true);
         this.setVisible(false);
 
@@ -139,6 +135,16 @@ public class VentanaModificar extends javax.swing.JFrame {
         txtNombre.setText("");
         txtEdad.setText("");
         txtRFC.setText("");
+    }
+
+    private void bloquearTodo() {
+        btnGuardar.setEnabled(false);
+        mni_Guardar_Cambios.setEnabled(false);
+        txtCodigo.setEnabled(false);
+        txtNombre.setEnabled(false);
+        txtEdad.setEnabled(false);
+        txtRFC.setEnabled(false);
+        cmbTipo.setEnabled(false);
     }
 
     private void mostrarAviso(int aviso) {
@@ -404,6 +410,7 @@ public class VentanaModificar extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (revisarCambios()) {
             procesoModificar();
+            bloquearTodo();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 

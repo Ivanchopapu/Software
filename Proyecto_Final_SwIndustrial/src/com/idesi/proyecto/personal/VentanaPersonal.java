@@ -44,6 +44,11 @@ public class VentanaPersonal extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void aplicarCambiosProducto(int posProd){
+        this.posProd = posProd;
+        vtnPrincipal.ajustarCambiosProductos(this.posProd);
+    }
+    
     public void aplicarCambiosExternos(int posProd, int posCitas) {
         this.posProd = posProd;
         this.posCitas = posCitas;
@@ -54,6 +59,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
         txtNoEmpleados.setText(String.valueOf(this.posEmp));
         if (posEmp < 1) {
             btn_Reporte.setEnabled(false);
+            btn_Buscar.setEnabled(false);
             btn_Modificar.setEnabled(false);
             btn_Eliminar.setEnabled(false);
             btn_agregarProducto.setEnabled(false);
@@ -64,6 +70,7 @@ public class VentanaPersonal extends javax.swing.JFrame {
             mni_Agregar_un_producto.setEnabled(false);
         } else {
             btn_Reporte.setEnabled(true);
+            btn_Buscar.setEnabled(true);
             btn_Modificar.setEnabled(true);
             btn_Eliminar.setEnabled(true);
             btn_agregarProducto.setEnabled(true);

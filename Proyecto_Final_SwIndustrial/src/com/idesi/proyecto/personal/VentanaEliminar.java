@@ -41,6 +41,9 @@ public class VentanaEliminar extends javax.swing.JFrame {
             return true;
         } else {
             mostrarAviso(2);
+            limpiarCamposBusquedaNoEncontrada();
+            btnEliminar.setEnabled(false);
+            mni_Eliminar.setEnabled(false);
             return false;
         }
     }
@@ -98,6 +101,8 @@ public class VentanaEliminar extends javax.swing.JFrame {
 
     private void procesoRegresar() {
         limpiarCampos();
+        btnEliminar.setEnabled(false);
+        mni_Eliminar.setEnabled(false);
         vtnPersonal.setVisible(true);
         this.setVisible(false);
 

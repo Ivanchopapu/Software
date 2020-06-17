@@ -17,12 +17,13 @@ public class VentanaRecursos extends javax.swing.JFrame {
 
     public void setTamaño(int Tamaño) {
         this.Tamaño = Tamaño;
+        this.vtnPrincipal.ajustarCambiosProductos(this.Tamaño);
     }
     Ventana_Alta_de_Producto Obj_Ventana_Alta_de_Producto = null;
 
     Producto Obj_Producto[]; //Arreglo de Productos
-    int posArr = 0;     //Controla la cantidad de elementos que hay en el Arreglo
-    int Tamaño;
+    public int posArr = 0;     //Controla la cantidad de elementos que hay en el Arreglo
+    public int Tamaño;
 
     public VentanaRecursos() {
         initComponents();
@@ -34,10 +35,6 @@ public class VentanaRecursos extends javax.swing.JFrame {
         this.setContentPane(ejemplo);
         initComponents();
 
-    }
-    
-    public void AplicarCambiosExternos(int posArr){
-        this.posArr = posArr;
     }
 
     private void procesoRegresar() {
@@ -310,10 +307,12 @@ public class VentanaRecursos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 
-    void Enable_Faltantes() {
-        btn_Buscar_Producto.setEnabled(true);
-        btn_Modificar.setEnabled(true);
-        btn_Reporte.setEnabled(true);
+    public void Enable_Faltantes() {
+        if (Tamaño > 0) {
+            btn_Buscar_Producto.setEnabled(true);
+            btn_Modificar.setEnabled(true);
+            btn_Reporte.setEnabled(true);
+        }
     }
 
 }

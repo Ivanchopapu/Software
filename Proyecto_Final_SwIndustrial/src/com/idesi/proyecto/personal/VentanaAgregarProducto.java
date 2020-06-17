@@ -40,6 +40,8 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
 
     private boolean revisarAlmacenamiento() {
         if (posProd == 5) {
+            limpiarCampos();
+            bloquearTodo();
             mostrarAviso(5);
             return false;
         } else {
@@ -51,6 +53,8 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
         if (!(txtCodigoEmp.getText().equals(""))) {
             return true;
         } else {
+            limpiarCampos();
+            bloquearTodo();
             mostrarAviso(6);
             return false;
         }
@@ -84,7 +88,7 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
         Boolean valido = false;
         for (int i = 0; i < posEmp; i++) {
             if (buscado.equals(empleados[i].getCodigoEmpleado()) && (empleados[i].getTipoEmpleado().equals("Laboratorista"))) {
-                
+
                 valido = true;
                 break;
             }
@@ -99,12 +103,8 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
             txtNombre.setEnabled(true);
             txtExistencia.setEnabled(true);
             txtPrecio.setEnabled(true);
+            btnGuardar.setEnabled(true);
         } else {
-            txtCodigo.setEnabled(false);
-            cmbTipo.setEnabled(false);
-            txtNombre.setEnabled(false);
-            txtExistencia.setEnabled(false);
-            txtPrecio.setEnabled(false);
             mostrarAviso(6);
         }
 
@@ -112,21 +112,31 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
 
     private void procesoGuardar() {
         productos[posProd] = new Producto();
-        productos[posProd].setCodigo(Integer.parseInt(txtCodigoEmp.getText().trim()));
+        productos[posProd].setCodigo(Integer.parseInt(txtCodigo.getText().trim()));
         productos[posProd].setTipoProducto(cmbTipo.getSelectedItem().toString());
         productos[posProd].setNombreProducto(txtNombre.getText().trim());
         productos[posProd].setExistencia(Integer.parseInt(txtExistencia.getText().trim()));
         productos[posProd].setPrecio(Integer.parseInt(txtPrecio.getText().trim()));
 
         posProd++;
-        //AjustarCambiosEnTodosPerrosLados
         mostrarAviso(1);
         limpiarCampos();
 
     }
 
+    private void bloquearTodo() {
+        txtCodigo.setEnabled(false);
+        cmbTipo.setEnabled(false);
+        txtNombre.setEnabled(false);
+        txtExistencia.setEnabled(false);
+        txtPrecio.setEnabled(false);
+        btnGuardar.setEnabled(false);
+    }
+
     private void procesoRegresar() {
         limpiarCampos();
+        this.bloquearTodo();
+        vtnPersonal.aplicarCambiosProducto(posProd);
         vtnPersonal.setVisible(true);
         this.setVisible(false);
 
@@ -235,7 +245,7 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
 
         lblPrecio.setText("Precio:");
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrativo", "Laboratorista"}));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Analgésico", "Antibiótico", "Preventivo"}));
         cmbTipo.setEnabled(false);
 
         btnValidar.setText("Validar");
@@ -366,7 +376,7 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
-        if(revisarEntrada()){
+        if (revisarEntrada()) {
             procesoValidar();
         }
     }//GEN-LAST:event_btnValidarActionPerformed

@@ -214,7 +214,7 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
             
         } finally {
             if (this.isAuxiliar() == true) {
-                JOptionPane.showMessageDialog(this, "El registro se guardó ");                
+                JOptionPane.showMessageDialog(this, "El registro se guardó ");
                 limpiar();
                 Obj_VentanaRecursos.Enable_Faltantes();
             }
@@ -224,6 +224,7 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
     private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
         this.setVisible(false);
         Obj_VentanaRecursos.setVisible(true);
+        
     }//GEN-LAST:event_btn_RegresarActionPerformed
 
     /**
