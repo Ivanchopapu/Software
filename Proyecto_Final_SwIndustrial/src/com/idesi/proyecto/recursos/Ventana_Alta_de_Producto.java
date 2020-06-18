@@ -227,8 +227,6 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
         }
         // Guarda los datos del nuevo Objeto
         try {       // Compara si algún dato está mal 
-            int Tamaño = Obj_VentanaRecursos.getTamaño() + 1;
-            Obj_VentanaRecursos.setTamaño(Tamaño);
             this.setAuxiliar(true);
             int Codigo = Integer.parseInt(txt_Codigo.getText());
             int Existencia = Integer.parseInt(txt_Cantidad.getText());
@@ -241,18 +239,15 @@ public class Ventana_Alta_de_Producto extends javax.swing.JFrame {
             Obj_Producto[posicion].setTipoProducto(box_Tipo.getSelectedItem().toString());
 
         } catch (Exception e) {
-
+            Obj_Producto[posicion] = null;
             this.setAuxiliar(false);
-            Obj_Producto[posicion].setCodigo(0);
-            Obj_Producto[posicion].setExistencia(0);
-            Obj_Producto[posicion].setPrecio(0);
-            Obj_Producto[posicion].setNombreProducto("");
-            Obj_Producto[posicion].setTipoProducto("");
             limpiar();
             JOptionPane.showMessageDialog(this, "Algún dato no está bien escrito");
 
         } finally {
             if (this.isAuxiliar() == true) {
+                int Tamaño = Obj_VentanaRecursos.getTamaño() + 1;
+                Obj_VentanaRecursos.setTamaño(Tamaño);
                 JOptionPane.showMessageDialog(this, "El registro se guardó ");
                 limpiar();
                 Obj_VentanaRecursos.Enable_Faltantes();

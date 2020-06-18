@@ -107,6 +107,8 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
             mni_Guardar.setEnabled(true);
         } else {
             mostrarAviso(6);
+            bloquearTodo();
+            limpiarCampos();
         }
 
     }
@@ -121,6 +123,7 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
 
         posProd++;
         mostrarAviso(1);
+        bloquearTodo();
         limpiarCampos();
 
     }
@@ -149,6 +152,8 @@ public class VentanaAgregarProducto extends javax.swing.JFrame {
         txtNombre.setText("");
         txtExistencia.setText("");
         txtPrecio.setText("");
+        txtCodigo.setText("");
+
     }
 
     private void mostrarAviso(int aviso) {
